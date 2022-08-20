@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
-    siteUrl: `https://gatsbystarterdefaultsource.gatsbyjs.io/`,
+    title: `High Fidelity`,
+    description: `Dev, design and strategy for the modern web`,
+    author: `@colinorama`,
+    siteUrl: `https://www.highfidelity.dev`,
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -30,5 +30,6 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    `gatsby-plugin-postcss`,
   ],
 }
