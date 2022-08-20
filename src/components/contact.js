@@ -76,15 +76,22 @@ export default function Contact() {
         </div>
         <div className=" py-16 px-4 sm:px-6 lg:col-span-3 lg:py-12 lg:px-8 xl:pl-12">
           <div className="max-w-lg mx-auto lg:max-w-none">
+            <div className={`${display ? "block" : "hidden"} rounded-md bg-green-50 p-4 mt-8 border border-emerald-300}`}>
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-green-800">Form successfully submitted. We'll be in touch soon!</p>
+                </div>
+              </div>
+            </div>
             <form onSubmit={handleSubmit} id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" method="POST" data-netlify="true">
               <div>
-                <label htmlFor="name-input" className="sr-only">
-                  Full name
-                </label>
+
                 <input
                   type="text"
                   name="name"
-                  id="name-input"
                   autoComplete="name"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                   placeholder="Full name"
@@ -93,11 +100,8 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="email-input" className="sr-only">
-                  Email
-                </label>
+
                 <input
-                  id="email-input"
                   name="email"
                   type="email"
                   autoComplete="email"
@@ -108,13 +112,10 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="phone-input" className="sr-only">
-                  Phone
-                </label>
+
                 <input
                   type="text"
                   name="phone"
-                  id="phone-input"
                   autoComplete="tel"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                   placeholder="Phone"
@@ -123,11 +124,8 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="message-area" className="sr-only">
-                  A little bit about your project
-                </label>
+
                 <textarea
-                  id="message-area"
                   name="message"
                   rows={4}
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border border-gray-300 rounded-md"
@@ -145,16 +143,6 @@ export default function Contact() {
                 </button>
               </div>
             </form>
-            <div className={`${display ? "block" : "hidden"} rounded-md bg-green-50 p-4 mt-8 border border-emerald-300}`}>
-              <div className="flex">
-                <div className="flex-shrink-0">
-                  <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
-                </div>
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-green-800">Form successfully submitted. We'll be in touch soon!</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
