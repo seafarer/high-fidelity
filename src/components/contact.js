@@ -21,7 +21,7 @@ export default function Contact() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    
+
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -31,8 +31,6 @@ export default function Contact() {
         setDisplay(true)
       ))
       .catch(error => alert(error));
-
-
   };
 
   function handleChange(event) {
@@ -44,8 +42,6 @@ export default function Contact() {
       }
     })
   }
-
-  console.log(encode(formData))
 
   return (
     <div id="get-in-touch" className="relative bg-gradient-to-b from-transparent to-primary-50">
@@ -78,7 +74,7 @@ export default function Contact() {
         </div>
         <div className=" py-16 px-4 sm:px-6 lg:col-span-3 lg:py-12 lg:px-8 xl:pl-12">
           <div className="max-w-lg mx-auto lg:max-w-none">
-            <div className={`${display ? "block" : "hidden"} rounded-md bg-green-50 p-4 mt-8 border border-emerald-300}`}>
+            <div className={`${display ? "block" : "hidden"} rounded-md bg-green-50 p-4 mb-8 border border-emerald-300}`}>
               <div className="flex">
                 <div className="flex-shrink-0">
                   <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
@@ -88,7 +84,7 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-            <form onSubmit={handleSubmit} id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+            <form onSubmit={handleSubmit} id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" data-netlify="true" data-netlify-honeypot="bot-field">
               <div>
 
                 <input
@@ -143,6 +139,7 @@ export default function Contact() {
                 >
                   Submit
                 </button>
+                <input type="hidden" name="form-name" value="high-fidelity-contact" />
               </div>
             </form>
           </div>
