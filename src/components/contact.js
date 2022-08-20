@@ -20,6 +20,8 @@ export default function Contact() {
   })
 
   function handleSubmit(e) {
+    e.preventDefault();
+    
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -30,7 +32,7 @@ export default function Contact() {
       ))
       .catch(error => alert(error));
 
-    e.preventDefault();
+
   };
 
   function handleChange(event) {
@@ -86,7 +88,7 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-            <form onSubmit={handleSubmit} id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" method="POST" data-netlify="true">
+            <form onSubmit={handleSubmit} id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
               <div>
 
                 <input
