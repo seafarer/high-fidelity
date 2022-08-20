@@ -4,22 +4,44 @@ import { CheckCircleIcon } from '@heroicons/react/solid'
 
 export default function Contact() {
 
-  let display = false;
+  const [display, setDisplay] = React.useState(false)
+  
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    let myForm = document.getElementById("hfContact");
-    let formData = new FormData(myForm);
+  const [formData, setFormData] = React.useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    message: "",
+  })
+
+  function handleSubmit(e) {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
+      body: encode({ "form-name": "contact", ...formData })
     })
-      .then(() => (display = true))
-      .catch((error) => alert(error));
+      .then(() => (
+        setDisplay(true)
+      ))
+      .catch(error => alert(error));
+
+    e.preventDefault();
   };
 
-  console.log(display)
+  function handleChange(event) {
+    const {name, value} = event.target
+    setFormData(prevFormData => {
+      return {
+        ...prevFormData,
+        [name]: value
+      }
+    })
+  }
 
   return (
     <div id="get-in-touch" className="relative bg-gradient-to-b from-transparent to-primary-50">
@@ -52,7 +74,7 @@ export default function Contact() {
         </div>
         <div className=" py-16 px-4 sm:px-6 lg:col-span-3 lg:py-12 lg:px-8 xl:pl-12">
           <div className="max-w-lg mx-auto lg:max-w-none">
-            <form id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" method="POST" data-netlify="true">
+            <form onSubmit={handleSubmit} id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" method="POST" data-netlify="true">
               <div>
                 <label htmlFor="full-name" className="sr-only">
                   Full name
@@ -64,6 +86,8 @@ export default function Contact() {
                   autoComplete="name"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                   placeholder="Full name"
+                  onChange={handleChange}
+                  value={formData.fullName}
                 />
               </div>
               <div>
@@ -77,6 +101,8 @@ export default function Contact() {
                   autoComplete="email"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                   placeholder="Email"
+                  onChange={handleChange}
+                  value={formData.email}
                 />
               </div>
               <div>
@@ -90,6 +116,8 @@ export default function Contact() {
                   autoComplete="tel"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                   placeholder="Phone"
+                  onChange={handleChange}
+                  value={formData.phone}
                 />
               </div>
               <div>
@@ -102,13 +130,13 @@ export default function Contact() {
                   rows={4}
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border border-gray-300 rounded-md"
                   placeholder="Message"
-                  defaultValue={''}
+                  onChange={handleChange}
+                  value={formData.message}
                 />
               </div>
               <div>
                 <button
                   type="submit"
-                  onClick={handleSubmit}
                   className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-primary hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                 >
                   Submit
