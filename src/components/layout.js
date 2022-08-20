@@ -24,7 +24,6 @@ const Layout = ({ children }) => {
     <>
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <main className="polka relative z-0">{children}</main>
-      <footer></footer>
     </>
   )
 }

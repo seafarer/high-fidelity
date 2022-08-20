@@ -1,7 +1,25 @@
 import * as React from "react"
 import { MailIcon, PhoneIcon } from '@heroicons/react/outline'
+import { CheckCircleIcon } from '@heroicons/react/solid'
 
 export default function Contact() {
+  let display = false;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let myForm = document.getElementById("hfContact");
+    let formData = new FormData(myForm);
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams(formData).toString(),
+    })
+      .then(() => (display = true))
+      .catch((error) => alert(error));
+  };
+
+  console.log(display)
+
   return (
     <div id="get-in-touch" className="relative bg-gradient-to-b from-transparent to-primary-50">
       <div className="relative mt-12 max-w-7xl mx-auto lg:grid lg:grid-cols-5">
@@ -33,7 +51,7 @@ export default function Contact() {
         </div>
         <div className=" py-16 px-4 sm:px-6 lg:col-span-3 lg:py-12 lg:px-8 xl:pl-12">
           <div className="max-w-lg mx-auto lg:max-w-none">
-            <form name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" netlify>
+            <form id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" method="POST" data-netlify="true">
               <div>
                 <label htmlFor="full-name" className="sr-only">
                   Full name
@@ -75,7 +93,7 @@ export default function Contact() {
               </div>
               <div>
                 <label htmlFor="message" className="sr-only">
-                  Message
+                  A little bit about your project
                 </label>
                 <textarea
                   id="message"
@@ -89,12 +107,23 @@ export default function Contact() {
               <div>
                 <button
                   type="submit"
+                  onClick={handleSubmit}
                   className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-primary hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                 >
                   Submit
                 </button>
               </div>
             </form>
+            <div className={`${display ? "block" : "hidden"} rounded-md bg-green-50 p-4 mt-8 border border-emerald-300}`}>
+              <div className="flex">
+                <div className="flex-shrink-0">
+                  <CheckCircleIcon className="h-5 w-5 text-green-400" aria-hidden="true" />
+                </div>
+                <div className="ml-3">
+                  <p className="text-sm font-medium text-green-800">Form successfully submitted. We'll be in touch soon!</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
