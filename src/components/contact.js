@@ -23,11 +23,10 @@ export default function Contact() {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "contact", formData })
+      body: encode({ "form-name": "high-fidelity-contact", formData })
     })
       .then(() => (
-        setDisplay(true),
-          console.log(formData)
+        setDisplay(true)
       ))
       .catch(error => alert(error));
 
