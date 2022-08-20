@@ -13,7 +13,7 @@ export default function Contact() {
   }
 
   const [formData, setFormData] = React.useState({
-    fullName: "",
+    name: "",
     email: "",
     phone: "",
     message: "",
@@ -42,6 +42,8 @@ export default function Contact() {
       }
     })
   }
+
+  console.log(encode(formData))
 
   return (
     <div id="get-in-touch" className="relative bg-gradient-to-b from-transparent to-primary-50">
@@ -76,26 +78,26 @@ export default function Contact() {
           <div className="max-w-lg mx-auto lg:max-w-none">
             <form onSubmit={handleSubmit} id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" method="POST" data-netlify="true">
               <div>
-                <label htmlFor="full-name" className="sr-only">
+                <label htmlFor="name-input" className="sr-only">
                   Full name
                 </label>
                 <input
                   type="text"
-                  name="fullName"
-                  id="fullName"
+                  name="name"
+                  id="name-input"
                   autoComplete="name"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                   placeholder="Full name"
                   onChange={handleChange}
-                  value={formData.fullName}
+                  value={formData.name}
                 />
               </div>
               <div>
-                <label htmlFor="email" className="sr-only">
+                <label htmlFor="email-input" className="sr-only">
                   Email
                 </label>
                 <input
-                  id="email"
+                  id="email-input"
                   name="email"
                   type="email"
                   autoComplete="email"
@@ -106,13 +108,13 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="phone" className="sr-only">
+                <label htmlFor="phone-input" className="sr-only">
                   Phone
                 </label>
                 <input
                   type="text"
                   name="phone"
-                  id="phone"
+                  id="phone-input"
                   autoComplete="tel"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                   placeholder="Phone"
@@ -121,15 +123,15 @@ export default function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="sr-only">
+                <label htmlFor="message-area" className="sr-only">
                   A little bit about your project
                 </label>
                 <textarea
-                  id="message"
+                  id="message-area"
                   name="message"
                   rows={4}
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border border-gray-300 rounded-md"
-                  placeholder="Message"
+                  placeholder="A little bit about your project"
                   onChange={handleChange}
                   value={formData.message}
                 />
