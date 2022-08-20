@@ -31,6 +31,7 @@ export default function Contact() {
         setDisplay(true)
       ))
       .catch(error => alert(error));
+    console.log(formData)
   };
 
   function handleChange(event) {
@@ -86,50 +87,62 @@ export default function Contact() {
             </div>
             <form onSubmit={handleSubmit} id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" data-netlify="true" data-netlify-honeypot="bot-field">
               <div>
-
+                <label htmlFor="name-input" className="sr-only">
+                  Full name
+                </label>
                 <input
-                  type="text"
                   name="name"
+                  onChange={handleChange}
+                  value={formData.name}
+                  id="name-input"
+                  type="text"
                   autoComplete="name"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                   placeholder="Full name"
-                  onChange={handleChange}
-                  value={formData.name}
                 />
               </div>
               <div>
-
+                <label htmlFor="email-input" className="sr-only">
+                  Email
+                </label>
                 <input
                   name="email"
+                  onChange={handleChange}
+                  value={formData.email}
                   type="email"
+                  id="email-input"
                   autoComplete="email"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                   placeholder="Email"
-                  onChange={handleChange}
-                  value={formData.email}
                 />
               </div>
               <div>
-
+                <label htmlFor="phone-input" className="sr-only">
+                  Phone
+                </label>
                 <input
-                  type="text"
                   name="phone"
+                  onChange={handleChange}
+                  value={formData.phone}
+                  id="phone-input"
+                  type="text"
                   autoComplete="tel"
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border-gray-300 rounded-md"
                   placeholder="Phone"
-                  onChange={handleChange}
-                  value={formData.phone}
                 />
               </div>
               <div>
-
+                <label htmlFor="message-area" className="sr-only">
+                  A little bit about your project
+                </label>
                 <textarea
                   name="message"
+                  onChange={handleChange}
+                  value={formData.message}
+                  id="message-area"
                   rows={4}
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border border-gray-300 rounded-md"
                   placeholder="A little bit about your project"
-                  onChange={handleChange}
-                  value={formData.message}
                 />
               </div>
               <div>
