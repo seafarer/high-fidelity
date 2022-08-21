@@ -13,10 +13,10 @@ export default function Contact() {
   }
 
   const [formData, setFormData] = React.useState({
-    name: "",
-    email: "",
-    phone: "",
-    message: "",
+    formName: "",
+    formEmail: "",
+    formPhone: "",
+    formMessage: "",
   })
 
   function handleSubmit(e) {
@@ -25,13 +25,12 @@ export default function Contact() {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "high-fidelity-contact", formData })
+      body: encode({ "form-name": "high-fidelity-contact", ...formData })
     })
       .then(() => (
         setDisplay(true)
       ))
       .catch(error => alert(error));
-    console.log(formData)
   };
 
   function handleChange(event) {
@@ -91,9 +90,9 @@ export default function Contact() {
                   Full name
                 </label>
                 <input
-                  name="name"
+                  name="formName"
                   onChange={handleChange}
-                  value={formData.name}
+                  value={formData.formName}
                   id="name-input"
                   type="text"
                   autoComplete="name"
@@ -106,9 +105,9 @@ export default function Contact() {
                   Email
                 </label>
                 <input
-                  name="email"
+                  name="formEmail"
                   onChange={handleChange}
-                  value={formData.email}
+                  value={formData.formEmail}
                   type="email"
                   id="email-input"
                   autoComplete="email"
@@ -121,9 +120,9 @@ export default function Contact() {
                   Phone
                 </label>
                 <input
-                  name="phone"
+                  name="formPhone"
                   onChange={handleChange}
-                  value={formData.phone}
+                  value={formData.formPhone}
                   id="phone-input"
                   type="text"
                   autoComplete="tel"
@@ -136,9 +135,9 @@ export default function Contact() {
                   A little bit about your project
                 </label>
                 <textarea
-                  name="message"
+                  name="formMessage"
                   onChange={handleChange}
-                  value={formData.message}
+                  value={formData.formMessage}
                   id="message-area"
                   rows={4}
                   className="block w-full shadow-sm py-3 px-4 placeholder-gray-500 focus:ring-primary focus:border-primary border border-gray-300 rounded-md"
@@ -152,7 +151,6 @@ export default function Contact() {
                 >
                   Submit
                 </button>
-                <input type="hidden" name="form-name" value="high-fidelity-contact" />
               </div>
             </form>
           </div>

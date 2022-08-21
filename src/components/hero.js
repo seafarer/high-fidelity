@@ -5,8 +5,6 @@ const heroBkgd = {
   backgroundImage: `url(${bkgd})`,
 }
 
-console.log(heroBkgd)
-
 const Hero = () => (
   <section className="relative bg-slate-900 text-white -z-10 clipped pb-12 pt-12">
     <div className="pointer-events-none select-none object-cover bg-cover absolute inset-0 bg-no-repeat" style={heroBkgd}></div>
