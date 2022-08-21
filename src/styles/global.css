@@ -24,8 +24,15 @@
   }
 
   .clipped-trapezoid {
-    clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+    clip-path: polygon(0 0, 100% 4%, 100% 96%, 0% 100%);
   }
+
+  @screen md {
+    .clipped-trapezoid {
+      clip-path: polygon(0 0, 100% 10%, 100% 90%, 0% 100%);
+    }
+  }
+  
   .polka {
     background-image:
       radial-gradient(rgb(251 251 255) 22%, transparent 22%),
