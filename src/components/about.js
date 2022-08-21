@@ -16,7 +16,7 @@ export default function About() {
                 <div className="text">
                   <h1 className="font-bold leading-none text-4xl md:text-5xl mb-7 mt-12 first:mt-0 last:mb-0">About</h1>
                   <div className="italic text-xl">
-                    <p className="text-base md:text-lg text-gray-500 mb-7 last:mb-0">Hi, I’m Colin O’Brien, and I started High Fidelity to to make it easier for businesses to create great content on the web. I work with you to solve your specific business problems and then provide a custom solution that meets your needs. I am a developer, digital product designer, and project manager with over 20 years of experience who can help bring your project to life. Review my scope of services below and then <a className="text-secondary hover:underline hover:underline-offset-1" href="#get-in-touch">get in touch</a> to see how I can help!</p>
+                    <p className="text-base md:text-lg text-gray-600 mb-7 last:mb-0">Hi, I’m Colin O’Brien, and I started High Fidelity to to make it easier for businesses to create great content on the web. I work with you to solve your specific business problems and then provide a custom solution that meets your needs. I am a developer, digital product designer, and project manager with over 20 years of experience who can help bring your project to life. Review my scope of services below and then <a className="text-secondary-600 hover:underline hover:underline-offset-1" href="#get-in-touch">get in touch</a> to see how I can help!</p>
                   </div>
                 </div>
               </div>
@@ -32,11 +32,13 @@ export default function About() {
                 <div className="absolute bottom-0 right-0 flex">
                   <a href="https://www.linkedin.com/in/colinobrien1/" target="_blank" rel="noreferrer">
                     <div className="block">
+                      <div className="sr-only">Colin OBrien LinkedIn</div>
                       <Linkedin className="rounded-sm bg-white fill-linkedin hover:fill-primary ease-in-out duration-200" width={28} />
                     </div>
                   </a>
                   <a href="https://github.com/seafarer/" target="_blank" rel="noreferrer">
                     <div className="block ml-1">
+                      <div className="sr-only">Colin OBrien Github</div>
                       <Github className="rounded-sm bg-white fill-github hover:fill-primary ease-in-out duration-200" width={28} />
                     </div>
                   </a>
