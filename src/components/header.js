@@ -17,13 +17,13 @@ const Header = ({ siteTitle }) => (
         <nav>
           <ul className="flex flex-wrap gap-6 md:gap-10">
             <li className="sans tracking-wide text-white italic font-extrabold leading-none uppercase">
-              <a href="#about">About</a>
+              <a href="/#about">About</a>
             </li>
             <li className="sans tracking-wide text-white italic font-extrabold leading-none uppercase">
-              <a href="#services">Services</a>
+              <a href="/#services">Services</a>
             </li>
             <li className="sans tracking-wide text-white italic font-extrabold leading-none uppercase">
-              <a href="#get-in-touch">Contact</a>
+              <a href="/#get-in-touch">Contact</a>
             </li>
           </ul>
         </nav>
