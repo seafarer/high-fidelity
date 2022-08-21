@@ -25,7 +25,7 @@ export default function Contact() {
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "high-fidelity-contact", ...formData })
+      body: encode({ "form-name": "High Fidelity Contact", ...formData })
     })
       .then(() => (
         setDisplay(true)
@@ -84,8 +84,7 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-            <form onSubmit={handleSubmit} id="hfContact" name="high-fidelity-contact" className="grid grid-cols-1 gap-y-6" data-netlify="true" data-netlify-honeypot="bot-field">
-              <input type="hidden" name="subject" value="Inquiry from High Fidelity" />
+            <form onSubmit={handleSubmit} id="hfContact" name="High Fidelity Contact" className="grid grid-cols-1 gap-y-6" data-netlify="true" data-netlify-honeypot="bot-field">
               <div>
                 <label htmlFor="name-input" className="sr-only">
                   Full name
