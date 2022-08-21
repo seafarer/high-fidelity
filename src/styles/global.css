@@ -16,6 +16,10 @@
   button {
     transition: all 200ms ease-in-out;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer utilities {

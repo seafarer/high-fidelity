@@ -44,8 +44,8 @@ export default function Contact() {
   }
 
   return (
-    <div id="get-in-touch" className="relative bg-gradient-to-b from-transparent to-primary-50">
-      <div className="relative mt-12 max-w-7xl mx-auto lg:grid lg:grid-cols-5">
+    <section id="get-in-touch" className="relative bg-gradient-to-b from-transparent to-primary-50">
+      <div className="relative pt-16 max-w-7xl mx-auto lg:grid lg:grid-cols-5">
         <div className="pt-10 pb-0 px-4 sm:px-6 lg:col-span-2 lg:px-8 lg:py-12 xl:pr-12 md:border-r md:border-gray-200">
           <div className="max-w-lg mx-auto">
             <h2 className="text-4xl font-bold text-primary ">
@@ -156,6 +156,6 @@ export default function Contact() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   )
 }

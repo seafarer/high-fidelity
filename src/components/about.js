@@ -1,5 +1,4 @@
 import * as React from "react"
-import {Link} from "gatsby";
 import { StaticImage } from "gatsby-plugin-image"
 import Linkedin from "./icons/linkedin";
 import Github from "./icons/github";
@@ -31,16 +30,16 @@ export default function About() {
                   className="rounded-lg mx-auto block"
                 />
                 <div className="absolute bottom-0 right-0 flex">
-                  <Link to="https://www.linkedin.com/in/colinobrien1/" target="_blank">
+                  <a href="https://www.linkedin.com/in/colinobrien1/" target="_blank" rel="noreferrer">
                     <div className="block">
                       <Linkedin className="rounded-sm bg-white fill-linkedin hover:fill-primary ease-in-out duration-200" width={28} />
                     </div>
-                  </Link>
-                  <Link to="https://github.com/seafarer/" target="_blank">
+                  </a>
+                  <a href="https://github.com/seafarer/" target="_blank" rel="noreferrer">
                     <div className="block ml-1">
                       <Github className="rounded-sm bg-white fill-github hover:fill-primary ease-in-out duration-200" width={28} />
                     </div>
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>

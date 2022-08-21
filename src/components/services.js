@@ -7,7 +7,7 @@ export default function Services() {
 
   return (
     <section className="services" id="services">
-      <div className="clipped-trapezoid grid-bkgd px-6 py-20 drop-shadow-lg">
+      <div className="clipped-trapezoid grid-bkgd px-6 py-28 drop-shadow-lg">
         <div className="mx-auto w-full max-w-6xl">
           <div className="content px-0 md:px-12">
             <h2 className="font-bold leading-none text-4xl md:text-5xl mb-7 mt-12 first:mt-0 last:mb-0 text-white tracking-wide">Services</h2>
