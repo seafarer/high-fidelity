@@ -2,6 +2,7 @@ import * as React from "react"
 import { StaticImage } from "gatsby-plugin-image"
 import Linkedin from "./icons/linkedin";
 import Github from "./icons/github";
+import {OutboundLink} from "gatsby-plugin-google-gtag";
 
 
 export default function About() {
@@ -30,18 +31,18 @@ export default function About() {
                   className="rounded-lg mx-auto block"
                 />
                 <div className="absolute bottom-0 right-0 flex">
-                  <a href="https://www.linkedin.com/in/colinobrien1/" target="_blank" rel="noreferrer">
+                  <OutboundLink href="https://www.linkedin.com/in/colinobrien1/" target="_blank" rel="noreferrer">
                     <div className="block">
                       <div className="sr-only">Colin OBrien LinkedIn</div>
                       <Linkedin className="rounded-sm bg-white fill-linkedin hover:fill-primary ease-in-out duration-200" width={28} />
                     </div>
-                  </a>
-                  <a href="https://github.com/seafarer/" target="_blank" rel="noreferrer">
+                  </OutboundLink>
+                  <OutboundLink href="https://github.com/seafarer/" target="_blank" rel="noreferrer">
                     <div className="block ml-1">
                       <div className="sr-only">Colin OBrien Github</div>
                       <Github className="rounded-sm bg-white fill-github hover:fill-primary ease-in-out duration-200" width={28} />
                     </div>
-                  </a>
+                  </OutboundLink>
                 </div>
               </div>
             </div>

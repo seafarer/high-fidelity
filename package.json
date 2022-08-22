@@ -7,6 +7,7 @@
   "dependencies": {
     "@heroicons/react": "^1.0.6",
     "gatsby": "^4.20.0",
+    "gatsby-plugin-google-gtag": "^4.21.0",
     "gatsby-plugin-image": "^2.20.0",
     "gatsby-plugin-manifest": "^4.20.0",
     "gatsby-plugin-sharp": "^4.20.0",

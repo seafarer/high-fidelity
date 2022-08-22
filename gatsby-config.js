@@ -31,5 +31,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          "G-2WT06GBEKM",
+        ],
+      },
+    }
   ],
 }
