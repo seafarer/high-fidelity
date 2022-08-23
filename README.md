@@ -1,5 +1,5 @@
 # HighFidelity.dev
-Single page site for my biz
+Single page site for my biz.
 
 ## 🧐 What's inside?
 
