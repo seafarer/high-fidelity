@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import WorkCard from "../../components/WorkCard.astro";
+
+const entries = (await getCollection("work")).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Work" description="Case studies in platform modernization, migrations, and product-minded engineering.">
+  <section class="mx-auto max-w-(--container-page) px-6 py-20 md:py-28">
+    <h1 class="font-display text-4xl text-ink md:text-5xl">Work</h1>
+    <p class="mt-4 max-w-2xl text-lg text-primary-800">
+      Selected case studies in platform modernization, migrations, and product-minded engineering.
+    </p>
+    <div class="mt-10 grid gap-5">
+      {entries.map((entry) => <WorkCard entry={entry} />)}
+    </div>
+  </section>
+</BaseLayout>

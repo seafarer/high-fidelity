@@ -1,0 +1,43 @@
+---
+const items = [
+  {
+    title: "Platform modernization & migrations",
+    body: "Untangling aging CMSs, consolidating platforms, migrating content, rebuilding frontends, and getting difficult web systems onto maintainable foundations.",
+    accent: "secondary",
+  },
+  {
+    title: "Senior engineering",
+    body: "Hands-on development across WordPress, React, Next.js, Astro, TypeScript, and headless architectures, embedded with your team or owning a discrete project.",
+    accent: "primary",
+  },
+  {
+    title: "Fractional technical leadership",
+    body: "Architecture, technical planning, requirements, vendor and team coordination, code review, platform ownership, and getting ambiguous projects moving.",
+    accent: "primary",
+  },
+  {
+    title: "Product-minded development",
+    body: "I've spent enough time in UX and product roles that I'm comfortable working upstream from the code, defining the problem, shaping the experience, then building it.",
+    accent: "secondary",
+  },
+];
+---
+
+<section class="mx-auto max-w-(--container-page) px-6 py-20 md:py-28">
+  <h2 class="font-display text-3xl text-ink md:text-4xl">Where I'm useful</h2>
+  <div class="mt-10 grid gap-6 md:grid-cols-2">
+    {
+      items.map((item) => (
+        <div
+          class={`panel p-6 ${item.accent === "secondary" ? "border-t-4 border-t-secondary-500" : "border-t-4 border-t-primary-500"}`}
+        >
+          <h3 class="text-lg font-semibold text-ink">{item.title}</h3>
+          <p class="mt-2 text-primary-800">{item.body}</p>
+        </div>
+      ))
+    }
+  </div>
+  <p class="mt-12 text-sm text-primary-700">
+    WordPress · TypeScript · React · Next.js · Astro · PHP · Node.js · Sanity · Drupal
+  </p>
+</section>

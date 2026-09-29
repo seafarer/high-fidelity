@@ -1,0 +1,22 @@
+---
+const stats = [
+  { figure: "20+", label: "years building for the web" },
+  { figure: "36 / 5M", label: "sites on one publishing platform, monthly visitors" },
+  { figure: "25K", label: "posts migrated, Drupal to WordPress" },
+];
+---
+
+<section class="section-ink border-t border-white/10">
+  <div class="mx-auto max-w-(--container-page) px-6 py-14">
+    <div class="grid gap-10 sm:grid-cols-3 sm:divide-x sm:divide-white/10">
+      {
+        stats.map((stat) => (
+          <div class="sm:px-8 sm:first:pl-0">
+            <p class="stat-figure text-4xl text-paper md:text-5xl">{stat.figure}</p>
+            <p class="mt-2 text-sm text-primary-200">{stat.label}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"lab">;
+}
+
+const { entry } = Astro.props;
+const { title, description, tags, type } = entry.data;
+---
+
+<a href={`/lab/${entry.id}`} class="panel group block p-6 sm:p-7">
+  <div class="flex items-baseline justify-between gap-4">
+    <h3 class="text-xl font-semibold text-ink group-hover:text-secondary-600">{title}</h3>
+    <span class="shrink-0 text-xs font-semibold uppercase tracking-wide text-primary-500">{type}</span>
+  </div>
+  <p class="mt-2 max-w-2xl text-primary-800">{description}</p>
+  {tags.length > 0 && <p class="mt-4 text-sm text-primary-500">{tags.join(" · ")}</p>}
+</a>

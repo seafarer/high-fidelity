@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LabCard from "../../components/LabCard.astro";
+
+const entries = (await getCollection("lab")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="Lab" description="Small tools, prototypes, experiments, and technical notes.">
+  <section class="mx-auto max-w-(--container-page) px-6 py-20 md:py-28">
+    <h1 class="font-display text-4xl text-ink md:text-5xl">Lab</h1>
+    <p class="mt-4 max-w-2xl text-lg text-primary-800">
+      Small tools, prototypes, experiments, and technical notes. I use downtime to build things, explore new
+      approaches, and test ideas before they show up in client work.
+    </p>
+    <div class="mt-10 grid gap-5">
+      {entries.map((entry) => <LabCard entry={entry} />)}
+    </div>
+  </section>
+</BaseLayout>

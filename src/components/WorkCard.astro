@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"work">;
+}
+
+const { entry } = Astro.props;
+const { title, summary, tags, metrics } = entry.data;
+---
+
+<a href={`/work/${entry.id}`} class="panel group grid gap-6 p-6 sm:grid-cols-[1fr_auto] sm:items-center sm:p-8">
+  <div>
+    <h3 class="text-xl font-semibold text-ink group-hover:text-secondary-600 md:text-2xl">{title}</h3>
+    <p class="mt-2 max-w-xl text-primary-800">{summary}</p>
+    {tags.length > 0 && <p class="mt-4 text-sm text-primary-500">{tags.join(" · ")}</p>}
+  </div>
+  {
+    metrics.length > 0 && (
+      <div class="flex shrink-0 gap-6 border-t border-primary-100 pt-4 sm:flex-col sm:border-t-0 sm:border-l sm:border-primary-100 sm:pt-0 sm:pl-8">
+        {metrics.map((metric) => (
+          <p class="font-display text-lg leading-tight text-secondary-600">{metric}</p>
+        ))}
+      </div>
+    )
+  }
+</a>

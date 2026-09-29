@@ -1,45 +1,35 @@
-# HighFidelity.dev
-Single page site for my biz.
+# highfidelity.dev
 
-## 🧐 What's inside?
+Colin O'Brien's personal site — built with [Astro](https://astro.build) and Tailwind CSS 4.
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+## Structure
 
     .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+    ├── src/
+    │   ├── content/          # Markdown content for the work + lab collections
+    │   │   ├── work/
+    │   │   └── lab/
+    │   ├── content.config.ts # Content collection schemas
+    │   ├── components/       # Astro components + the Contact.tsx React island
+    │   ├── layouts/          # BaseLayout.astro (head, meta, gtag)
+    │   ├── pages/            # File-based routes
+    │   └── styles/           # global.css — Tailwind 4 @theme tokens + custom utilities
+    ├── public/                # Static assets served as-is (favicon, robots.txt, manifest, OG image)
+    └── astro.config.mjs
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
+## Commands
 
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
+| Command           | Action                                      |
+| ------------------ | -------------------------------------------- |
+| `npm install`      | Install dependencies                         |
+| `npm run dev`      | Start the local dev server at `localhost:4321` |
+| `npm run build`    | Build the production site to `./dist/`       |
+| `npm run preview`  | Preview the production build locally         |
 
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
+## Content
 
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
+New case studies go in `src/content/work/*.md`, new Lab entries in `src/content/lab/*.md` (or `.mdx` if the entry embeds a component). See existing entries for the expected frontmatter fields.
 
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-browser/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
+## Deployment
 
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-config/) for more detail).
-
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-node/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
-
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-
-9.  **`LICENSE`**: This Gatsby starter is licensed under the 0BSD license. This means that you can see this file as a placeholder and replace it with your own license.
-
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
-
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-12. **`README.md`**: A text file containing useful reference information about your project.
-
+Deployed on Netlify. The build output directory is `dist/` (not Gatsby's old `public/` — update Netlify's site settings if migrating an existing site). The contact form uses Netlify Forms; its static markup is prerendered at build time so Netlify's form-detection bot can find it without a backend.

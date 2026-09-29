@@ -1,0 +1,18 @@
+---
+import { getCollection } from "astro:content";
+import WorkCard from "./WorkCard.astro";
+
+const entries = (await getCollection("work", ({ data }) => data.featured))
+  .sort((a, b) => a.data.order - b.data.order)
+  .slice(0, 3);
+---
+
+<section class="mx-auto max-w-(--container-page) px-6 py-20 md:py-28">
+  <div class="flex items-baseline justify-between gap-4">
+    <h2 class="font-display text-3xl text-ink md:text-4xl">Selected work</h2>
+    <a href="/work" class="text-sm font-semibold text-ink hover:text-secondary-600">See all &rarr;</a>
+  </div>
+  <div class="mt-8 grid gap-5">
+    {entries.map((entry) => <WorkCard entry={entry} />)}
+  </div>
+</section>
