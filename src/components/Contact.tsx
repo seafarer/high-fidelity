@@ -20,6 +20,8 @@ function encode(data: Record<string, string>) {
     .join("&");
 }
 
+const labelClass = "flex flex-col gap-2 font-mono text-[11px] font-bold tracking-[.14em] uppercase";
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState<FormState>(initialState);
@@ -37,16 +39,19 @@ export default function Contact() {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "High Fidelity Contact", ...formData }),
     })
-      .then(() => setSubmitted(true))
+      .then((response) => {
+        if (!response.ok) throw new Error(`Form submission failed (${response.status})`);
+        setSubmitted(true);
+      })
       .catch((error) => alert(error));
   }
 
   return (
     <>
       {submitted && (
-        <div className="mb-8 rounded-md border border-primary-200 bg-primary-50 p-4">
-          <p className="text-sm font-medium text-primary-800">
-            Form successfully submitted. I'll be in touch soon!
+        <div className="mb-6 border-3 border-ink bg-sun p-4">
+          <p className="font-mono text-xs font-bold tracking-[.12em] uppercase">
+            Got it. I'll be in touch soon!
           </p>
         </div>
       )}
@@ -54,75 +59,68 @@ export default function Contact() {
         onSubmit={handleSubmit}
         id="hfContact"
         name="High Fidelity Contact"
-        className="grid grid-cols-1 gap-y-5"
+        className="flex flex-col gap-5"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
       >
-        <div>
-          <label htmlFor="name-input" className="sr-only">
-            Full name
-          </label>
+        <label className={labelClass}>
+          Full name
           <input
             name="formName"
             onChange={handleChange}
             value={formData.formName}
-            id="name-input"
             type="text"
             autoComplete="name"
             required
-            className="block w-full rounded-md border border-primary-200 px-4 py-3 placeholder-primary-400 focus:border-primary-500 focus:ring-primary-500"
-            placeholder="Full name"
+            className="field"
+            placeholder="Jane Public"
           />
-        </div>
-        <div>
-          <label htmlFor="email-input" className="sr-only">
+        </label>
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-5">
+          <label className={labelClass}>
             Email
+            <input
+              name="formEmail"
+              onChange={handleChange}
+              value={formData.formEmail}
+              type="email"
+              autoComplete="email"
+              required
+              className="field"
+              placeholder="jane@company.com"
+            />
           </label>
-          <input
-            name="formEmail"
-            onChange={handleChange}
-            value={formData.formEmail}
-            type="email"
-            id="email-input"
-            autoComplete="email"
-            required
-            className="block w-full rounded-md border border-primary-200 px-4 py-3 placeholder-primary-400 focus:border-primary-500 focus:ring-primary-500"
-            placeholder="Email"
-          />
+          <label className={labelClass}>
+            Phone (optional)
+            <input
+              name="formPhone"
+              onChange={handleChange}
+              value={formData.formPhone}
+              type="tel"
+              autoComplete="tel"
+              className="field"
+              placeholder="+1 …"
+            />
+          </label>
         </div>
-        <div>
-          <label htmlFor="phone-input" className="sr-only">
-            Phone
-          </label>
-          <input
-            name="formPhone"
-            onChange={handleChange}
-            value={formData.formPhone}
-            id="phone-input"
-            type="text"
-            autoComplete="tel"
-            className="block w-full rounded-md border border-primary-200 px-4 py-3 placeholder-primary-400 focus:border-primary-500 focus:ring-primary-500"
-            placeholder="Phone (optional)"
-          />
-        </div>
-        <div>
-          <label htmlFor="message-area" className="sr-only">
-            A little bit about your project
-          </label>
+        <label className={labelClass}>
+          The project
           <textarea
             name="formMessage"
             onChange={handleChange}
             value={formData.formMessage}
-            id="message-area"
-            rows={4}
+            rows={5}
             required
-            className="block w-full rounded-md border border-primary-200 px-4 py-3 placeholder-primary-400 focus:border-primary-500 focus:ring-primary-500"
-            placeholder="A little bit about your project"
+            className="field resize-y"
+            placeholder="What are you building, migrating, or untangling?"
           />
-        </div>
-        <div>
-          <button type="submit" className="btn btn-primary">
-            <span>Talk about a project</span>
+        </label>
+        <div className="mt-1.5">
+          <button
+            type="submit"
+            className="btn block-shadow press border-ink bg-pink text-ink [--o:7px] [--sc:var(--color-ink)] px-6 py-4"
+          >
+            Send it over →
           </button>
         </div>
       </form>

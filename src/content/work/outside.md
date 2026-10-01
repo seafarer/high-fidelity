@@ -7,6 +7,11 @@ tags: ["WordPress", "Multisite", "DevOps", "Product"]
 metrics: ["36 sites", "~5M monthly visitors"]
 featured: true
 order: 1
+category: "Outside"
+cardTitle: "Scaling a publishing platform"
+cardBlurb: "From 4 to 36 properties on one multisite codebase."
+stat: "36"
+statLabel: "Sites · ~5M monthly"
 ---
 
 Outside runs a network of endemic outdoor and adventure publications, properties that started as separate, individually-run WordPress installs with no shared infrastructure, no consistent editorial tooling, and no path to scale.

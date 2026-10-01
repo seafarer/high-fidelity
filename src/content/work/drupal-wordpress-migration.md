@@ -6,6 +6,11 @@ tags: ["Drupal", "WordPress", "Migration", "AI-assisted tooling"]
 metrics: ["25,000 posts migrated", "~30% under budget"]
 featured: true
 order: 2
+category: "Publisher migration"
+cardTitle: "Drupal → WordPress"
+cardBlurb: "25,000 posts migrated off an end-of-life Drupal platform."
+stat: "−30%"
+statLabel: "Under budget"
 ---
 
 A publisher's Drupal platform had reached end-of-life: no security updates, a shrinking pool of Drupal talent, and content locked behind a content model no one still fully understood. The task was to move roughly 25,000 posts, spanning years of inconsistent field usage and ad hoc content types, onto WordPress without losing structure, media, or URLs.

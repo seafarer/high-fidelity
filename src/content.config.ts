@@ -13,6 +13,12 @@ const work = defineCollection({
     featured: z.boolean().default(false),
     order: z.number().default(0),
     coverImage: z.string().optional(),
+    // Homepage/listing card copy; falls back to title and summary.
+    category: z.string().optional(),
+    cardTitle: z.string().optional(),
+    cardBlurb: z.string().optional(),
+    stat: z.string().optional(),
+    statLabel: z.string().optional(),
   }),
 });
 

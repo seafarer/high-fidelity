@@ -7,6 +7,8 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
   site: "https://www.highfidelity.dev",
   integrations: [react(), mdx(), sitemap()],
+  // Listen on all interfaces so the dev server is reachable from devices on the local network.
+  server: { host: true },
   vite: {
     plugins: [tailwindcss()],
   },

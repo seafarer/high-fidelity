@@ -6,6 +6,9 @@ tags: ["Next.js", "TypeScript", "Drupal", "Salesforce"]
 metrics: []
 featured: true
 order: 3
+category: "Travel"
+stat: "8-fig"
+statLabel: "Booking business"
 ---
 
 An eight-figure vacation rental business needed its booking experience rebuilt: the front end had to move faster than its legacy Drupal backend could support, while still integrating cleanly with the Drupal content layer and a Salesforce-driven reservations and CRM system underneath.

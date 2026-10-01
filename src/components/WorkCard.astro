@@ -3,24 +3,60 @@ import type { CollectionEntry } from "astro:content";
 
 interface Props {
   entry: CollectionEntry<"work">;
+  index?: number;
 }
 
-const { entry } = Astro.props;
-const { title, summary, tags, metrics } = entry.data;
+// Cards cycle through three colorways, each nudged off the grid a different way.
+const variants = [
+  {
+    card: "bg-card text-ink hover:text-ink md:mr-16",
+    eyebrow: "text-pink-deep",
+    blurb: "text-ink-700",
+    tags: "text-ink-500",
+    stat: "text-violet",
+    rule: "border-ink",
+  },
+  {
+    card: "bg-violet text-paper hover:text-paper md:ml-16 -rotate-[.6deg]",
+    eyebrow: "text-sun",
+    blurb: "",
+    tags: "text-lilac",
+    stat: "text-sun",
+    rule: "border-paper",
+  },
+  {
+    card: "bg-sun text-ink hover:text-ink md:mx-6",
+    eyebrow: "text-ink",
+    blurb: "text-ink-800",
+    tags: "",
+    stat: "text-pink-deep",
+    rule: "border-ink",
+  },
+];
+
+const { entry, index = 0 } = Astro.props;
+const { title, summary, year, tags, category, cardTitle, cardBlurb, stat, statLabel } = entry.data;
+const v = variants[index % variants.length];
+const eyebrow = [year, category].filter(Boolean).join(" · ");
 ---
 
-<a href={`/work/${entry.id}`} class="panel group grid gap-6 p-6 sm:grid-cols-[1fr_auto] sm:items-center sm:p-8">
-  <div>
-    <h3 class="text-xl font-semibold text-ink group-hover:text-secondary-600 md:text-2xl">{title}</h3>
-    <p class="mt-2 max-w-xl text-primary-800">{summary}</p>
-    {tags.length > 0 && <p class="mt-4 text-sm text-primary-500">{tags.join(" · ")}</p>}
+<a
+  href={`/work/${entry.id}`}
+  class={`block-shadow lift grid items-center gap-6 border-3 border-paper px-[34px] py-[30px] [--o:14px] [--sc:var(--color-pink)] md:grid-cols-[1fr_auto] ${v.card}`}
+>
+  <div class="min-w-0">
+    {eyebrow && <div class={`label tracking-[.14em] ${v.eyebrow}`}>{eyebrow}</div>}
+    <h3 class="mt-2.5 mb-2 font-display text-[clamp(32px,4vw,44px)] leading-none font-normal uppercase">
+      {cardTitle ?? title}&nbsp;→
+    </h3>
+    <p class={`text-base ${v.blurb}`}>{cardBlurb ?? summary}</p>
+    {tags.length > 0 && <p class={`label mt-3.5 text-[11px] tracking-[.12em] ${v.tags}`}>{tags.join(" · ")}</p>}
   </div>
   {
-    metrics.length > 0 && (
-      <div class="flex shrink-0 gap-6 border-t border-primary-100 pt-4 sm:flex-col sm:border-t-0 sm:border-l sm:border-primary-100 sm:pt-0 sm:pl-8">
-        {metrics.map((metric) => (
-          <p class="font-display text-lg leading-tight text-secondary-600">{metric}</p>
-        ))}
+    stat && (
+      <div class={`justify-self-end border-l-3 pl-6 text-right ${v.rule}`}>
+        <div class={`font-display text-[64px] leading-[.9] ${v.stat}`}>{stat}</div>
+        {statLabel && <div class="label mt-1.5 text-[11px] tracking-[.12em]">{statLabel}</div>}
       </div>
     )
   }

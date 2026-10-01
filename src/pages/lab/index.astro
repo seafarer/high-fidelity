@@ -7,14 +7,19 @@ const entries = (await getCollection("lab")).sort((a, b) => b.data.date.valueOf(
 ---
 
 <BaseLayout title="Lab" description="Small tools, prototypes, experiments, and technical notes.">
-  <section class="mx-auto max-w-(--container-page) px-6 py-20 md:py-28">
-    <h1 class="font-display text-4xl text-ink md:text-5xl">Lab</h1>
-    <p class="mt-4 max-w-2xl text-lg text-primary-800">
-      Small tools, prototypes, experiments, and technical notes. I use downtime to build things, explore new
-      approaches, and test ideas before they show up in client work.
-    </p>
-    <div class="mt-10 grid gap-5">
-      {entries.map((entry) => <LabCard entry={entry} />)}
+  <section class="dots-sand bg-sand pt-24 pb-[130px]">
+    <div class="mx-auto max-w-(--container-page) px-8">
+      <div class="label text-pink-deep">Off-hours</div>
+      <h1 class="mt-3.5 font-display text-[clamp(56px,7vw,96px)] leading-none font-normal uppercase">
+        The <span class="hl -rotate-3 border-3 border-ink bg-pink shadow-[6px_6px_0_var(--color-violet)]">lab</span>
+      </h1>
+      <p class="mt-8 mb-16 max-w-[520px] text-[17px] leading-relaxed text-pretty text-ink-700">
+        Small tools, prototypes, experiments, and technical notes. I use downtime to build things, explore new
+        approaches, and test ideas before they show up in client work.
+      </p>
+      <div class="grid items-stretch gap-9 md:grid-cols-2">
+        {entries.map((entry, i) => <LabCard entry={entry} index={i} />)}
+      </div>
     </div>
   </section>
 </BaseLayout>

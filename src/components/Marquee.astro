@@ -1,0 +1,33 @@
+---
+const items = [
+  "WordPress",
+  "Next.js",
+  "Astro",
+  "TypeScript",
+  "React",
+  "Drupal",
+  "Sanity",
+  "PHP",
+  "Node.js",
+  "Platform migrations",
+  "Headless CMS",
+];
+---
+
+<div
+  class="relative z-2 -mt-11 -ml-[2%] w-[104%] -rotate-[1.6deg] overflow-hidden border-y-3 border-ink bg-sun py-3.5 shadow-[0_8px_0_var(--color-pink)]"
+>
+  <p class="sr-only">{items.join(", ")}</p>
+  <div class="animate-marquee flex w-max" aria-hidden="true">
+    {
+      [0, 1].map(() =>
+        items.map((item, i) => (
+          <span class="inline-flex items-center gap-7 pr-7 font-display text-[26px] tracking-[.02em] whitespace-nowrap text-ink uppercase">
+            {item}
+            <span class:list={["text-[22px]", i % 2 ? "text-violet" : "text-pink"]}>✱</span>
+          </span>
+        )),
+      )
+    }
+  </div>
+</div>

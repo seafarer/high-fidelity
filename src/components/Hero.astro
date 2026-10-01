@@ -1,25 +1,107 @@
 ---
+const pipeline = [
+  {
+    step: "01",
+    title: "Legacy & end-of-life",
+    meta: "Untangled · Mapped · Migrated",
+    class: "mr-9 bg-pink",
+  },
+  {
+    step: "02",
+    title: "Tooling & automation",
+    meta: "Custom workflows · Agentic AI",
+    class: "mx-[18px] bg-sun",
+  },
+  {
+    step: "03",
+    title: "Modern, fast, maintainable",
+    meta: "Shipped on time · Owned end to end",
+    class: "ml-9 bg-violet text-paper",
+  },
+];
+const arrowIndent = ["pl-12", "pl-28"];
 ---
 
-<section class="section-ink relative overflow-hidden">
-  <div class="hero-field absolute inset-0 opacity-70" aria-hidden="true"></div>
-  <div class="relative mx-auto max-w-(--container-page) px-6 pt-20 pb-24 md:pt-24 md:pb-32">
-    <div class="max-w-3xl">
-      <h1 class="font-display text-5xl leading-[1.05] text-paper md:text-7xl">
-        I build and modernize complex web platforms.
+<section class="dots-dark bg-ink pt-10 pb-[140px] text-paper sm:pt-14 xl:pt-[88px]">
+  <div
+    class="mx-auto flex max-w-[1440px] flex-wrap items-start gap-x-[clamp(64px,6vw,96px)] gap-y-16 px-6 sm:px-10"
+  >
+    <div class="@container min-w-0 basis-full xl:flex-[1_1_560px]">
+      <div class="label mb-8 text-pink">Based in Colorado</div>
+      <!-- Sized from its column: the widest line runs about 5.6em, so it fills the column at every width. -->
+      <h1
+        class="m-0 font-display text-[clamp(52px,calc(100cqw/5.6),136px)] leading-[1.02] font-normal tracking-[.005em] uppercase"
+      >
+        I build &amp;<br />
+        <span class="hl my-[.06em] -rotate-[2.5deg] bg-pink text-ink shadow-[7px_7px_0_var(--color-sun)]"
+          >modernize</span
+        ><br />
+        complex web
+        <span
+          class="hl my-[.08em] ml-[.35em] rotate-[1.8deg] bg-violet text-paper shadow-[7px_7px_0_var(--color-pink)]"
+          >platforms</span
+        >
       </h1>
-      <p class="mt-6 max-w-xl text-lg text-primary-100 md:text-xl">
+      <p class="mt-10 max-w-[96cqw] text-[clamp(18px,calc(100cqw/32),24px)] leading-normal text-pretty text-fog">
         Senior engineering, technical leadership, and product strategy for teams that need experienced hands
         without adding a full-time hire.
       </p>
-      <div class="mt-10 flex flex-wrap items-center gap-6">
-        <a href="/#contact" class="btn btn-primary"><span>Talk about a project</span></a>
+      <div class="mt-10 flex flex-wrap gap-5">
         <a
-          href="/work"
-          class="text-sm font-semibold text-paper underline decoration-secondary-400 decoration-2 underline-offset-4 hover:text-secondary-300"
+          href="/#contact"
+          class="btn block-shadow press bg-pink text-ink hover:text-ink [--o:8px] [--sc:var(--color-violet)]"
         >
-          See selected work &rarr;
+          Talk about a project →
         </a>
+        <a
+          href="/#work"
+          class="btn block-shadow press bg-ink text-paper hover:text-paper [--o:8px] [--sc:var(--color-pink)]"
+        >
+          See selected work
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="mt-[72px] min-w-[min(100%,340px)] flex-[0_1_520px] border-3 border-ink bg-card p-[26px] text-ink shadow-[18px_18px_0_var(--color-pink)] outline-3 outline-paper"
+      aria-label="How a project moves through the signal chain"
+      role="figure"
+    >
+      <div class="label mb-[22px] flex items-center justify-between text-[11px]">
+        <span>Signal chain</span><span class="tracking-normal text-violet" aria-hidden="true">▚▚ ▚▚▚</span>
+      </div>
+      <div class="flex flex-col gap-1.5">
+        {
+          pipeline.map((item, i) => (
+            <>
+              <div class={`border-3 border-ink px-4 py-3.5 shadow-[5px_5px_0_var(--color-ink)] ${item.class}`}>
+                <div class="flex items-baseline gap-3">
+                  <span class="font-display text-[22px]">{item.step}</span>
+                  <span class="text-[17px] font-semibold">{item.title}</span>
+                </div>
+                <div class="label mt-1 text-[10px] tracking-[.14em]">
+                  {item.meta.split(" · ").map((part, j) => (
+                    <>
+                      {j > 0 && " · "}
+                      <span class="whitespace-nowrap">{part}</span>
+                    </>
+                  ))}
+                </div>
+              </div>
+              {i < pipeline.length - 1 && (
+                <div
+                  class={`font-mono text-lg leading-tight font-bold ${arrowIndent[i]}`}
+                  aria-hidden="true"
+                >
+                  ↓
+                </div>
+              )}
+            </>
+          ))
+        }
+      </div>
+      <div class="label mt-[22px] border-t-2 border-dashed border-ink pt-3.5 text-[10.5px] leading-relaxed tracking-widest">
+        In: whatever you have · Out: something your team can own
       </div>
     </div>
   </div>

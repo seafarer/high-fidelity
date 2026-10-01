@@ -16,33 +16,39 @@ const { Content } = await render(entry);
 ---
 
 <BaseLayout title={title} description={summary}>
-  <article class="mx-auto max-w-3xl px-6 py-20 md:py-28">
-    <a href="/work" class="text-sm font-semibold text-primary-600 hover:text-secondary-600">&larr; All work</a>
-    <h1 class="mt-4 font-display text-4xl text-ink md:text-5xl">{title}</h1>
-    <p class="mt-4 text-lg text-primary-800">{summary}</p>
-    <dl class="mt-6 flex flex-wrap gap-x-8 gap-y-2 text-sm text-primary-600">
+  <article class="mx-auto max-w-3xl px-8 pt-24 pb-[130px]">
+    <a href="/work" class="label border-b-3 border-pink pb-1 tracking-[.14em]">&larr; All work</a>
+    <h1 class="mt-10 font-display text-[clamp(44px,6vw,72px)] leading-[1.05] font-normal uppercase">{title}</h1>
+    <p class="mt-5 text-lg leading-relaxed text-ink-700">{summary}</p>
+    <dl class="label mt-8 flex flex-wrap gap-x-8 gap-y-3 border-y-3 border-ink py-4 text-[11px] tracking-[.14em]">
       {client && (
         <div class="flex gap-2">
-          <dt class="font-semibold text-primary-800">Client</dt>
+          <dt class="text-pink-deep">Client</dt>
           <dd>{client}</dd>
         </div>
       )}
       {year && (
         <div class="flex gap-2">
-          <dt class="font-semibold text-primary-800">Year</dt>
+          <dt class="text-pink-deep">Year</dt>
           <dd>{year}</dd>
         </div>
       )}
       {metrics.length > 0 && (
         <div class="flex gap-2">
-          <dt class="font-semibold text-primary-800">Impact</dt>
+          <dt class="text-pink-deep">Impact</dt>
           <dd>{metrics.join(" · ")}</dd>
         </div>
       )}
     </dl>
-    <div class="prose prose-primary mt-10 max-w-none text-primary-900 [&>p]:mb-4 [&>p]:leading-relaxed">
+    <div class="prose-hf mt-10">
       <Content />
     </div>
-    {tags.length > 0 && <p class="mt-10 text-sm text-primary-600">{tags.join(" · ")}</p>}
+    {tags.length > 0 && (
+        <div class="label mt-12 flex flex-wrap gap-2 text-[10px] tracking-[.12em]">
+          {tags.map((tag) => (
+            <span class="border-2 border-ink px-2 py-1">{tag}</span>
+          ))}
+        </div>
+      )}
   </article>
 </BaseLayout>

@@ -1,32 +1,113 @@
 ---
-import HfLogo from "./icons/HfLogo.astro";
+import Logo from "./Logo.astro";
 
 const navItems = [
-  { href: "/work", label: "Work" },
-  { href: "/lab", label: "Lab" },
+  { href: "/#work", label: "Work" },
+  { href: "/#lab", label: "Lab" },
   { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];
 ---
 
-<header class="sticky top-0 z-30 border-b border-primary-100 bg-paper/90 backdrop-blur">
-  <div class="mx-auto flex max-w-(--container-page) items-center justify-between gap-6 px-6 py-4">
-    <a href="/" class="flex items-center gap-3 text-ink">
-      <HfLogo width={28} class="text-primary-500" />
-      <span class="font-display text-xl tracking-wide">High Fidelity</span>
-    </a>
-    <nav>
-      <ul class="flex flex-wrap items-center gap-6 text-sm font-semibold tracking-wide text-ink">
+<header class="relative z-20 border-b-3 border-night-line bg-ink text-paper">
+  <div class="mx-auto flex max-w-(--container-page) items-center justify-between gap-6 px-8 py-[18px]">
+    <Logo />
+
+    <nav class="label hidden items-center gap-7 tracking-[.12em] md:flex" aria-label="Main">
+      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a
+        href="/#contact"
+        class="block-shadow press border-3 border-paper bg-pink px-4 py-2.5 text-ink hover:text-ink [--o:4px] [--sc:var(--color-violet)]"
+      >
+        Start a project →
+      </a>
+      <span class="-ml-2 hidden items-start gap-2 text-[10px] leading-[1.6] tracking-[.14em] text-sun lg:flex">
+        <span class="mt-[5px] size-1.5 shrink-0 rounded-full bg-sun"></span>
+        <span>Booking<br />2026</span>
+      </span>
+    </nav>
+
+    <button
+      type="button"
+      id="menu-toggle"
+      class="block-shadow press grid size-11 place-items-center border-3 border-paper bg-pink text-ink [--o:4px] [--sc:var(--color-violet)] md:hidden"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Menu"
+    >
+      <span class="flex w-5 flex-col gap-[5px]" aria-hidden="true">
+        <span class="h-[3px] bg-ink"></span>
+        <span class="h-[3px] bg-ink"></span>
+        <span class="h-[3px] bg-ink"></span>
+      </span>
+    </button>
+  </div>
+
+  <!-- Full-screen menu below md. It carries its own top bar because the header scrolls away. -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-50 hidden h-dvh flex-col overflow-y-auto bg-ink md:hidden"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Menu"
+  >
+    <div class="flex items-center justify-between gap-6 border-b-3 border-night-line px-8 py-[18px]">
+      <Logo />
+      <button
+        type="button"
+        id="menu-close"
+        class="block-shadow press grid size-11 place-items-center border-3 border-paper bg-pink text-ink [--o:4px] [--sc:var(--color-violet)]"
+        aria-label="Close menu"
+      >
+        <span class="relative block size-5" aria-hidden="true">
+          <span class="absolute inset-x-0 top-1/2 -mt-[1.5px] h-[3px] rotate-45 bg-ink"></span>
+          <span class="absolute inset-x-0 top-1/2 -mt-[1.5px] h-[3px] -rotate-45 bg-ink"></span>
+        </span>
+      </button>
+    </div>
+    <nav class="flex flex-1 flex-col px-8 pt-4 pb-10" aria-label="Main">
+      <ul>
         {
           navItems.map((item) => (
-            <li>
-              <a href={item.href} class="transition-colors hover:text-secondary-600">
+            <li class="border-b-3 border-night-line">
+              <a href={item.href} class="block py-4 font-display text-5xl uppercase">
                 {item.label}
               </a>
             </li>
           ))
         }
       </ul>
+      <a
+        href="/#contact"
+        class="btn block-shadow press mt-auto w-full bg-pink text-ink hover:text-ink [--o:8px] [--sc:var(--color-violet)]"
+      >
+        Start a project →
+      </a>
     </nav>
   </div>
 </header>
+
+<script>
+  const toggle = document.getElementById("menu-toggle")!;
+  const close = document.getElementById("menu-close")!;
+  const menu = document.getElementById("mobile-menu")!;
+
+  function setOpen(open: boolean) {
+    toggle.setAttribute("aria-expanded", String(open));
+    menu.classList.toggle("hidden", !open);
+    menu.classList.toggle("flex", open);
+    // Keep the page underneath from scrolling while the menu covers it.
+    document.documentElement.classList.toggle("overflow-hidden", open);
+    (open ? close : toggle).focus();
+  }
+
+  toggle.addEventListener("click", () => setOpen(true));
+  close.addEventListener("click", () => setOpen(false));
+  // Links are same-page anchors, so close the menu once one is chosen.
+  menu.addEventListener("click", (event) => {
+    if ((event.target as Element).closest("a")) setOpen(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") setOpen(false);
+  });
+</script>

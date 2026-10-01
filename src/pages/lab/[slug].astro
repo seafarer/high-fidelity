@@ -18,33 +18,39 @@ const formattedDate = date.toLocaleDateString("en-US", { year: "numeric", month:
 ---
 
 <BaseLayout title={title} description={description}>
-  <article class="mx-auto max-w-3xl px-6 py-20 md:py-28">
-    <a href="/lab" class="text-sm font-semibold text-primary-600 hover:text-secondary-600">&larr; All Lab entries</a>
-    <div class="mt-4 flex items-center gap-3">
-      <span class="text-xs font-semibold uppercase tracking-wide text-primary-500">{type}</span>
-      <span class="text-xs text-primary-400">{formattedDate}</span>
+  <article class="mx-auto max-w-3xl px-8 pt-24 pb-[130px]">
+    <a href="/lab" class="label border-b-3 border-pink pb-1 tracking-[.14em]">&larr; All Lab entries</a>
+    <div class="label mt-10 flex items-center gap-4 text-[11px] tracking-[.14em]">
+      <span class="-rotate-3 border-2 border-ink bg-sun px-2.5 py-1">{type}</span>
+      <span class="text-ink-500">{formattedDate}</span>
     </div>
-    <h1 class="mt-2 font-display text-4xl text-ink md:text-5xl">{title}</h1>
-    <p class="mt-4 text-lg text-primary-800">{description}</p>
+    <h1 class="mt-4 font-display text-[clamp(44px,6vw,72px)] leading-[1.05] font-normal uppercase">{title}</h1>
+    <p class="mt-5 text-lg leading-relaxed text-ink-700">{description}</p>
     {
       (demoUrl || githubUrl) && (
         <div class="mt-6 flex flex-wrap gap-4">
           {demoUrl && (
-            <a href={demoUrl} target="_blank" rel="noreferrer" class="btn btn-secondary">
-              <span>Live demo</span>
+            <a href={demoUrl} target="_blank" rel="noreferrer" class="btn block-shadow press border-ink bg-card text-ink hover:text-ink [--o:6px] [--sc:var(--color-pink)]">
+              Live demo →
             </a>
           )}
           {githubUrl && (
-            <a href={githubUrl} target="_blank" rel="noreferrer" class="btn btn-secondary">
-              <span>View on GitHub</span>
+            <a href={githubUrl} target="_blank" rel="noreferrer" class="btn block-shadow press border-ink bg-card text-ink hover:text-ink [--o:6px] [--sc:var(--color-pink)]">
+              View on GitHub →
             </a>
           )}
         </div>
       )
     }
-    <div class="prose prose-primary mt-10 max-w-none text-primary-900 [&>p]:mb-4 [&>p]:leading-relaxed">
+    <div class="prose-hf mt-10">
       <Content />
     </div>
-    {tags.length > 0 && <p class="mt-10 text-sm text-primary-600">{tags.join(" · ")}</p>}
+    {tags.length > 0 && (
+        <div class="label mt-12 flex flex-wrap gap-2 text-[10px] tracking-[.12em]">
+          {tags.map((tag) => (
+            <span class="border-2 border-ink px-2 py-1">{tag}</span>
+          ))}
+        </div>
+      )}
   </article>
 </BaseLayout>

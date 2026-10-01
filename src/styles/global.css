@@ -1,39 +1,41 @@
-/* Adobe Fonts kit — carries the existing Countach (display) + Trade Gothic Next (sans) faces.
-   If this kit ever lapses, replace with a fresh Typekit embed or a licensed alternative slab/display face. */
-@import url("https://use.typekit.net/imk4yqa.css");
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "trade-gothic-next", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", Arial, sans-serif;
-  --font-display: "countach", Georgia, "Times New Roman", serif;
+  --font-sans: "Archivo", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Anton", Impact, "Arial Narrow", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --color-ink: #1c1830;
-  --color-paper: #fbfbff;
+  --color-ink: #16131d;
+  --color-paper: #f3eee3;
+  --color-card: #fbf8f1;
+  --color-sand: #ece5d6;
+  --color-pink: #ff3b8d;
+  --color-pink-deep: #d81f72;
+  --color-violet: #5a3ff0;
+  --color-lilac: #d8d0ff;
+  --color-sun: #ffc933;
 
-  --color-primary-50: #f5f5fa;
-  --color-primary-100: #ebeaf5;
-  --color-primary-200: #d1cfe8;
-  --color-primary-300: #b4b0d8;
-  --color-primary-400: #908bc6;
-  --color-primary-500: #534d9d;
-  --color-primary-600: #4d4690;
-  --color-primary-700: #433e7f;
-  --color-primary-800: #373267;
-  --color-primary-900: #242244;
+  /* Text tints on light and dark grounds */
+  --color-ink-800: #2a2533;
+  --color-ink-700: #3d3746;
+  --color-ink-600: #4d4757;
+  --color-ink-500: #5c5566;
+  --color-fog: #cfc8d8;
+  --color-fog-dim: #a79fb2;
+  --color-night-line: #2b2635;
 
-  --color-secondary-50: #fdf1f7;
-  --color-secondary-100: #fce8f2;
-  --color-secondary-200: #f9c8e0;
-  --color-secondary-300: #f5a8cd;
-  --color-secondary-400: #ef76b0;
-  --color-secondary-500: #e5217f;
-  --color-secondary-600: #cd1870;
-  --color-secondary-700: #bb1666;
-  --color-secondary-800: #9b1254;
-  --color-secondary-900: #6e0d3c;
+  --container-page: 75rem;
 
-  --container-page: 72rem;
+  --animate-marquee: hf-marquee 40s linear infinite;
+
+  @keyframes hf-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 @layer base {
@@ -41,112 +43,134 @@
     scroll-behavior: smooth;
   }
 
+  /* Ink behind the page so overscroll matches the dark header and footer. */
   body {
-    background-color: var(--color-paper);
+    background-color: var(--color-ink);
     color: var(--color-ink);
   }
 
+  a:hover {
+    color: var(--color-pink);
+  }
+
   ::selection {
-    background-color: var(--color-secondary-200);
+    background-color: var(--color-sun);
     color: var(--color-ink);
+  }
+
+  ::placeholder {
+    color: #8a8494;
   }
 }
 
 @layer components {
-  /* The one signature "tilted" motif carried over from the old site — used consistently
-     on every primary CTA instead of just one, and toned down from -12deg to -6deg. */
+  /* Mono uppercase label used for section kickers, nav, chips, and meta lines. */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .dots-dark {
+    background-image: radial-gradient(#2e2839 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+
+  .dots-light {
+    background-image: radial-gradient(#d9d1c1 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+
+  .dots-sand {
+    background-image: radial-gradient(#d3cab8 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+
+  /* Tilted highlight block behind a word in a headline. Rotation, fill, and shadow
+     come from utilities at the call site. */
+  .hl {
+    display: inline-block;
+    padding: 0 0.14em;
+  }
+
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 0.5rem;
-    border-radius: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    font-weight: 600;
-    line-height: 1;
-    transform: skewX(-6deg);
-    transition:
-      transform 150ms ease-in-out,
-      background-color 150ms ease-in-out;
+    border: 3px solid var(--color-paper);
+    padding: 18px 26px;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
   }
 
-  .btn > * {
-    transform: skewX(6deg);
+  .field {
+    display: block;
+    width: 100%;
+    border: 3px solid var(--color-ink);
+    background: #fff;
+    padding: 13px 14px;
+    font: 16px var(--font-sans);
+    color: var(--color-ink);
+    box-shadow: 4px 4px 0 var(--color-ink);
+    outline: none;
+    transition: box-shadow 120ms ease-out;
   }
 
-  .btn:hover {
-    transform: skewX(-6deg) translateY(-1px);
+  .field:focus {
+    box-shadow: 4px 4px 0 var(--color-violet);
   }
 
-  /* The one accent used for every primary call to action, light section or dark. */
-  .btn-primary {
-    background-color: var(--color-secondary-500);
-    color: white;
+  /* Long-form case study and lab entry bodies. */
+  .prose-hf > * + * {
+    margin-top: 1.1em;
   }
 
-  .btn-primary:hover {
-    background-color: var(--color-secondary-600);
+  .prose-hf {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-ink-800);
   }
 
-  /* Outline style for secondary actions. Uses currentColor so it adapts to whichever
-     text color its container already set (paper on dark, ink on light) instead of a
-     second hardcoded pairing. */
-  .btn-secondary {
-    background-color: transparent;
-    box-shadow: inset 0 0 0 1.5px currentColor;
+  .prose-hf a {
+    border-bottom: 3px solid var(--color-pink);
   }
+}
 
-  .btn-secondary:hover {
-    background-color: color-mix(in oklab, currentColor 12%, transparent);
+/* Hard offset shadow. Set --o (offset) and --sc (shadow color) per element. These live
+   in the utilities layer so their hover states can override rotate-* utilities. */
+@utility block-shadow {
+  box-shadow: var(--o, 8px) var(--o, 8px) 0 var(--sc, var(--color-ink));
+  transition:
+    translate 120ms ease-out,
+    rotate 120ms ease-out,
+    box-shadow 120ms ease-out;
+}
+
+/* Buttons press into their shadow on hover. */
+@utility press {
+  &:hover {
+    translate: calc(var(--o, 8px) / 2) calc(var(--o, 8px) / 2);
+    box-shadow: calc(var(--o, 8px) / 2) calc(var(--o, 8px) / 2) 0 var(--sc, var(--color-ink));
   }
+}
 
-  /* Restrained descendant of the old hand-authored gradient SVG: a few soft, blended
-     color fields rather than a saturated glowing blob. Sits on the dark hero/proof-strip
-     opener — the one deliberate dark moment on an otherwise light page. */
-  .hero-field {
-    background-image:
-      radial-gradient(ellipse 55% 60% at 15% 10%, color-mix(in oklab, var(--color-secondary-500) 65%, transparent), transparent 70%),
-      radial-gradient(ellipse 50% 50% at 88% 0%, color-mix(in oklab, var(--color-primary-400) 60%, transparent), transparent 70%),
-      radial-gradient(ellipse 65% 55% at 65% 95%, color-mix(in oklab, var(--color-primary-500) 55%, transparent), transparent 75%);
-    filter: blur(70px);
+/* Cards lift off their shadow on hover and straighten if tilted. */
+@utility lift {
+  &:hover {
+    rotate: 0deg;
+    translate: -3px -3px;
+    box-shadow: calc(var(--o, 12px) + 3px) calc(var(--o, 12px) + 3px) 0 var(--sc, var(--color-ink));
   }
+}
 
-  /* Restrained callback to the old .polka dot texture — one section, low density. */
-  .dot-grid {
-    background-image: radial-gradient(color-mix(in oklab, var(--color-ink) 16%, transparent) 1px, transparent 1px);
-    background-size: 22px 22px;
-  }
-
-  /* The one dark "act" at the top of the page (hero + proof strip). Everything below
-     is light — a single deliberate light/dark switch, not an alternating checkerboard. */
-  .section-ink {
-    background-color: var(--color-ink);
-    color: var(--color-paper);
-  }
-
-  /* Shared card/panel surface: one radius scale (rounded-2xl) for every panel on the
-     page, one border treatment, consistent hover lift. */
-  .panel {
-    border-radius: 1rem;
-    border: 1px solid var(--color-primary-200);
-    background-color: white;
-    transition:
-      transform 150ms ease-in-out,
-      box-shadow 150ms ease-in-out,
-      border-color 150ms ease-in-out;
-  }
-
-  .panel:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px -12px color-mix(in oklab, var(--color-ink) 25%, transparent);
-    border-color: var(--color-primary-300);
-  }
-
-  /* Big tabular figures for stats/metrics — the "make the meaningful parts show" fix. */
-  .stat-figure {
-    font-family: var(--font-display);
-    font-variant-numeric: tabular-nums;
-    line-height: 1;
-    letter-spacing: -0.01em;
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee {
+    animation: none;
   }
 }

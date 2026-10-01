@@ -1,35 +1,29 @@
 ---
-import Github from "./icons/Github.astro";
-import Linkedin from "./icons/Linkedin.astro";
-
 const year = new Date().getFullYear();
+
+const navItems = [
+  { href: "/#work", label: "Work" },
+  { href: "/#lab", label: "Lab" },
+  { href: "/#about", label: "About" },
+  { href: "/#contact", label: "Contact" },
+];
 ---
 
-<footer class="border-t border-primary-100">
-  <div class="mx-auto flex max-w-(--container-page) flex-col gap-4 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
-    <p class="text-sm text-primary-800">&copy; {year} Colin O'Brien. Based in Colorado.</p>
-    <div class="flex items-center gap-5">
-      <a
-        href="https://www.linkedin.com/in/colinobrien1/"
-        target="_blank"
-        rel="noreferrer"
-        class="text-primary-500 transition-colors hover:text-secondary-600"
-      >
-        <span class="sr-only">Colin O'Brien on LinkedIn</span>
-        <Linkedin width={20} />
-      </a>
-      <a
-        href="https://github.com/seafarer/"
-        target="_blank"
-        rel="noreferrer"
-        class="text-primary-500 transition-colors hover:text-secondary-600"
-      >
-        <span class="sr-only">Colin O'Brien on GitHub</span>
-        <Github width={20} />
-      </a>
-      <a href="mailto:info@highfidelity.dev" class="text-sm font-semibold text-primary-800 hover:text-secondary-600">
-        info@highfidelity.dev
-      </a>
+<footer class="overflow-hidden bg-ink pt-10 pb-9 text-paper">
+  <div class="mx-auto max-w-(--container-page) px-8">
+    <div
+      class="-rotate-2 text-center font-display text-[clamp(64px,15vw,200px)] leading-[.9] whitespace-nowrap text-[#2b2536] uppercase"
+      aria-hidden="true"
+    >
+      High Fidelity
+    </div>
+    <div
+      class="label mt-12 flex flex-wrap items-center justify-between gap-6 border-t-3 border-night-line pt-6 text-[11px] tracking-[.14em]"
+    >
+      <span class="text-fog-dim">© {year} Colin O'Brien · Based in Colorado</span>
+      <div class="flex flex-wrap gap-6">
+        {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
     </div>
   </div>
 </footer>
