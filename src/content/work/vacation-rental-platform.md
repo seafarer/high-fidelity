@@ -1,8 +1,8 @@
 ---
 title: "Vacation rental platform"
-summary: "Modernizing the booking experience for an eight-figure travel business"
-year: "2023–2024"
-tags: ["Next.js", "TypeScript", "Drupal", "Salesforce"]
+summary: "Discovery, design, and front-end build for a high-volume booking site"
+year: "2024"
+tags: ["Next.js", "TypeScript", "Drupal", "Salesforce", "UX/UI"]
 metrics: []
 featured: true
 order: 3
@@ -11,6 +11,21 @@ stat: "8-fig"
 statLabel: "Booking business"
 ---
 
-An eight-figure vacation rental business needed its booking experience rebuilt: the front end had to move faster than its legacy Drupal backend could support, while still integrating cleanly with the Drupal content layer and a Salesforce-driven reservations and CRM system underneath.
+**At a glance**
+- Role: Co-lead on discovery and design (via [Wild Roar](https://www.wildroar.co)), front-end developer on the build
+- Stack: Next.js, TypeScript, Drupal (CMS), Salesforce (property management)
+- Scope: Stakeholder interviews, site audit, user journeys, UI design, front-end engineering
 
-I worked across UX and front-end engineering on a Next.js/TypeScript platform that sits in front of that integration, focused on the parts of the booking flow (search, property detail, availability, checkout) that most directly affect conversion. The work spanned product-level decisions about the experience, not just implementing a handed-off design.
+**The situation**
+A Vacation rental company was running its business on a site that couldn't keep up. Booking was the core of the business, but the existing experience made it harder than it needed to be for guests to find, evaluate, and reserve a property. The new platform needed a modern Next.js front end that pulled content from Drupal and live property and availability data from Salesforce. Additionally, they wanted a design and theme system that could be applied to future booking sites they may develop or acquire in the future. 
+
+**The fix**
+My Parnter and I at Wild Roar owned the full UX/UI for this unique project. We interviewed their team to understand how guests actually book and where the business was losing them, audited the existing site for UX and conversion problems, and mapped the user journeys the new site needed to support. That research shaped the design we delivered.
+
+When the project moved into development, I joined the build, embedding with their internal team. I developed the homepage, blog, and informational pages, built a custom page builder in Drupal so their team could assemble pages without developer help. I also contributed components to the core booking experience: the search interface, property search cards, and rental detail pages, including a modern lightbox experience.
+
+Working on both sides meant the design decisions carried through to the build intact. Being able to work with their team to help implement the design, ensured our UX research made it in to the final build. 
+
+**The result**
+The client reports sales are up YoY, that the new site was well executed, has been highly maintainable, and overall budget and timeline were met for such a complex redesign and rebuild
+

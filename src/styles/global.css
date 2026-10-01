@@ -140,6 +140,55 @@
   .prose-hf a {
     border-bottom: 3px solid var(--color-pink);
   }
+
+  .prose-hf strong {
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .prose-hf h2,
+  .prose-hf h3 {
+    margin-top: 1.8em;
+    font-family: var(--font-display);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--color-ink);
+  }
+
+  .prose-hf h2 {
+    font-size: 2rem;
+  }
+
+  .prose-hf h3 {
+    font-size: 1.5rem;
+  }
+
+  /* Tailwind's preflight strips list markers; restore them with square pink bullets. */
+  .prose-hf ul,
+  .prose-hf ol {
+    padding-left: 1.4em;
+  }
+
+  .prose-hf ul {
+    list-style: square;
+  }
+
+  .prose-hf ol {
+    list-style: decimal;
+  }
+
+  .prose-hf li + li {
+    margin-top: 0.4em;
+  }
+
+  .prose-hf li::marker {
+    color: var(--color-pink);
+  }
+
+  .prose-hf ol li::marker {
+    font-family: var(--font-mono);
+    font-weight: 700;
+  }
 }
 
 /* Hard offset shadow. Set --o (offset) and --sc (shadow color) per element. These live

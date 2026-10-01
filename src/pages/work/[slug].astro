@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Gallery from "../../components/Gallery.astro";
 
 export async function getStaticPaths() {
   const entries = await getCollection("work");
@@ -11,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { title, summary, client, year, tags, metrics } = entry.data;
+const { title, summary, client, year, tags, metrics, images } = entry.data;
 const { Content } = await render(entry);
 ---
 
@@ -19,7 +20,7 @@ const { Content } = await render(entry);
   <article class="mx-auto max-w-3xl px-8 pt-24 pb-32.5">
     <a href="/work" class="label border-b-3 border-pink pb-1 tracking-[.14em]">&larr; All work</a>
     <h1 class="mt-10 font-display text-[clamp(44px,6vw,72px)] leading-[1.05] font-normal uppercase">{title}</h1>
-    <p class="mt-5 text-lg leading-relaxed text-ink-700">{summary}</p>
+    <p class="mt-6 border-l-6 border-pink pl-5 text-[clamp(20px,2.4vw,24px)] leading-snug font-medium text-pretty text-ink">{summary}</p>
     <dl class="label mt-8 flex flex-wrap gap-x-8 gap-y-3 border-y-3 border-ink py-4 text-[11px] tracking-[.14em]">
       {client && (
         <div class="flex gap-2">
@@ -43,6 +44,11 @@ const { Content } = await render(entry);
     <div class="prose-hf mt-10">
       <Content />
     </div>
+    {images.length > 0 && (
+      <div class="mt-14 lg:-mx-32">
+        <Gallery images={images} />
+      </div>
+    )}
     {tags.length > 0 && (
         <div class="label mt-12 flex flex-wrap gap-2 text-[10px] tracking-[.12em]">
           {tags.map((tag) => (

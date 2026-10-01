@@ -1,9 +1,16 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z, type SchemaContext } from "astro:content";
 import { glob } from "astro/loaders";
+
+// Screenshots rendered as a captioned gallery on the entry page. Paths are relative to the
+// Markdown file, e.g. `./images/vinyl-scan/capture.png`.
+const gallery = (image: SchemaContext["image"]) =>
+  z
+    .array(z.object({ src: image(), alt: z.string(), caption: z.string().optional() }))
+    .default([]);
 
 const work = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/work" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     summary: z.string(),
     client: z.string().optional(),
@@ -19,12 +26,13 @@ const work = defineCollection({
     cardBlurb: z.string().optional(),
     stat: z.string().optional(),
     statLabel: z.string().optional(),
+    images: gallery(image),
   }),
 });
 
 const lab = defineCollection({
   loader: glob({ pattern: "**/*.{md,mdx}", base: "./src/content/lab" }),
-  schema: z.object({
+  schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
     date: z.coerce.date(),
@@ -33,6 +41,7 @@ const lab = defineCollection({
     demoUrl: z.string().url().optional(),
     githubUrl: z.string().url().optional(),
     featured: z.boolean().default(false),
+    images: gallery(image),
   }),
 });
 

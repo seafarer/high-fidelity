@@ -1,6 +1,6 @@
 ---
 import { Image } from "astro:assets";
-import headshot from "../assets/headshot.png";
+import headshot from "../assets/colin-obrien-headshot-2.jpeg";
 ---
 
 <section id="about" class="pt-30 pb-32.5">
@@ -14,38 +14,40 @@ import headshot from "../assets/headshot.png";
         >
       </h2>
       <div class="flex max-w-140 flex-col gap-4.5 text-[17px] leading-[1.65] text-pretty text-ink-800">
-        <p>I'm Colin O'Brien — an independent senior web engineer and technical lead based in Colorado.</p>
-        <p>
-          I've worked across development, product, UX, publishing, and digital strategy for more than 20 years.
-          Before returning to independent consulting, I led engineering and product work for Outside's publishing
-          platform and later co-founded Wild Roar, a small digital studio.
-        </p>
-        <p>
-          I'm happiest on projects that are a little messy: legacy systems, complicated migrations, ambitious new
-          products, or situations where the technical problem is only part of the actual problem.
-        </p>
-        <p>
-          I work directly with companies and also partner with agencies that need additional senior engineering
-          capacity.
-        </p>
+        <p>I’m Colin O’Brien, a senior web engineer and technical lead based in Colorado.</p>
+        <p>I’ve worked across development, product, UX, publishing, and digital strategy for more than 20 years. I previously led engineering and product work for Outside’s publishing platform and later co-founded Wild Roar, a small digital studio.</p>
+        <p>I’m happiest working on projects that are a little messy: ambitious new products, legacy systems, complicated migrations, or situations where the technical problem is only part of the actual problem.</p>
+        <p>I work directly with companies and also partner with agencies that need senior engineering capacity, from fractional technical leadership and contract engineering to migrations, platform modernization, and select web builds.</p>
+
       </div>
     </div>
     <div class="flex justify-center md:pt-30">
       <div
-        class="relative w-[min(100%,380px)] -rotate-2 border-3 border-ink bg-card px-4 pt-5 pb-5 shadow-[18px_18px_0_var(--color-pink)]"
+        class="relative w-[min(100%,380px)] rotate-1 border-3 border-ink bg-card px-4 pt-5 pb-5 shadow-[18px_18px_0_var(--color-pink)]"
       >
         <span
           class="absolute -top-4.5 left-1/2 -ml-15 h-8 w-30 -rotate-5 border-2 border-ink bg-sun opacity-95"
           aria-hidden="true"></span>
+        <svg class="absolute size-0" aria-hidden="true">
+          <filter id="duotone" color-interpolation-filters="sRGB">
+            <feColorMatrix type="saturate" values="0" result="gray" />
+            <feComponentTransfer in="gray" result="tone">
+              <feFuncR type="table" tableValues="0.086 0.353 0.847 0.953" />
+              <feFuncG type="table" tableValues="0.075 0.247 0.816 0.933" />
+              <feFuncB type="table" tableValues="0.114 0.941 1 0.89" />
+            </feComponentTransfer>
+            <feComposite in="tone" in2="gray" operator="arithmetic" k2="0.5" k3="0.5" />
+          </filter>
+        </svg>
         <Image
           src={headshot}
           alt="Colin O'Brien"
           width={334}
           height={334}
-          class="block aspect-square w-full border-3 border-ink object-cover contrast-105 grayscale"
+          class="block aspect-square w-full border-3 border-ink object-cover [filter:url(#duotone)]"
         />
         <div class="mt-4 flex items-center justify-between gap-3">
-          <span class="label tracking-[.14em]">Colin O'Brien · CO</span>
+          <span class="label tracking-[.14em]">Colin O'Brien</span>
           <div class="flex gap-2.5">
             <a
               href="https://www.linkedin.com/in/colinobrien1/"
