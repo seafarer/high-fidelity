@@ -20,10 +20,10 @@ const formattedDate = date.toLocaleDateString("en-US", { month: "short", year: "
 
 <a
   href={`/lab/${entry.id}`}
-  class="block-shadow lift relative block border-3 border-ink bg-card px-[30px] pt-8 pb-7 hover:text-ink [--o:12px] hover:[--sc:var(--color-pink)]"
+  class="block-shadow lift relative block border-3 border-ink bg-card px-7.5 pt-8 pb-7 hover:text-ink [--o:12px] hover:[--sc:var(--color-pink)]"
 >
   <span
-    class={`label absolute -top-3.5 right-[22px] border-2 border-ink px-2.5 py-1 text-[11px] tracking-[.14em] ${badgeColors[type]} ${index % 2 ? "-rotate-4" : "rotate-4"}`}
+    class={`label absolute -top-3.5 right-5.5 border-2 border-ink px-2.5 py-1 text-[11px] tracking-[.14em] ${badgeColors[type]} ${index % 2 ? "-rotate-4" : "rotate-4"}`}
   >
     {type}
   </span>
@@ -32,7 +32,7 @@ const formattedDate = date.toLocaleDateString("en-US", { month: "short", year: "
   <p class="text-[15px] leading-relaxed text-ink-700">{description}</p>
   {
     tags.length > 0 && (
-      <div class="label mt-[18px] flex flex-wrap gap-2 text-[10px] tracking-[.12em]">
+      <div class="label mt-4.5 flex flex-wrap gap-2 text-[10px] tracking-[.12em]">
         {tags.map((tag) => (
           <span class="border-2 border-ink px-2 py-1">{tag}</span>
         ))}

@@ -6,7 +6,7 @@ const items = [
     body: "Untangling aging CMSs, consolidating platforms, migrating content, rebuilding frontends, and getting difficult web systems onto maintainable foundations.",
     card: "md:col-span-7 bg-card [--sc:var(--color-pink)]",
     kickerColor: "text-violet",
-    bodyColor: "text-ink-700 max-w-[520px]",
+    bodyColor: "text-ink-700 max-w-130",
     badge: "rotate-4 bg-sun text-ink",
   },
   {
@@ -33,13 +33,13 @@ const items = [
     body: "I've spent enough time in UX and product roles that I'm comfortable working upstream from the code — defining the problem, shaping the experience, then building it.",
     card: "md:col-span-7 md:mt-7 bg-pink [--sc:var(--color-violet)]",
     kickerColor: "text-ink",
-    bodyColor: "text-ink max-w-[520px]",
+    bodyColor: "text-ink max-w-130",
     badge: "-rotate-4 bg-sun text-ink",
   },
 ];
 ---
 
-<section class="pt-[60px] pb-[120px]">
+<section class="pt-15 pb-30">
   <div class="mx-auto max-w-(--container-page) px-8">
     <div class="label text-pink-deep">Capabilities</div>
     <h2 class="mt-3.5 mb-14 font-display text-[clamp(44px,6vw,72px)] leading-none font-normal uppercase">
@@ -48,10 +48,10 @@ const items = [
     <div class="grid gap-10 md:grid-cols-12 md:gap-7">
       {
         items.map((item, i) => (
-          <div class={`block-shadow lift relative border-3 border-ink p-[30px] [--o:12px] ${item.card}`}>
+          <div class={`block-shadow lift relative border-3 border-ink p-7.5 [--o:12px] ${item.card}`}>
             <div class={`label tracking-[.14em] ${item.kickerColor}`}>{item.kicker}</div>
             <span
-              class={`absolute -top-[22px] right-6 grid size-[60px] place-items-center border-3 border-ink font-display text-[28px] shadow-[5px_5px_0_var(--color-ink)] ${item.badge}`}
+              class={`absolute -top-5.5 right-6 grid size-15 place-items-center border-3 border-ink font-display text-[28px] shadow-[5px_5px_0_var(--color-ink)] ${item.badge}`}
               aria-hidden="true"
             >
               {String(i + 1).padStart(2, "0")}

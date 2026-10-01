@@ -17,7 +17,7 @@ const variants = [
     rule: "border-ink",
   },
   {
-    card: "bg-violet text-paper hover:text-paper md:ml-16 -rotate-[.6deg]",
+    card: "bg-violet text-paper hover:text-paper md:ml-16 rotate-[-0.6deg]",
     eyebrow: "text-sun",
     blurb: "",
     tags: "text-lilac",
@@ -42,7 +42,7 @@ const eyebrow = [year, category].filter(Boolean).join(" · ");
 
 <a
   href={`/work/${entry.id}`}
-  class={`block-shadow lift grid items-center gap-6 border-3 border-paper px-[34px] py-[30px] [--o:14px] [--sc:var(--color-pink)] md:grid-cols-[1fr_auto] ${v.card}`}
+  class={`block-shadow lift grid items-center gap-6 border-3 border-paper px-8.5 py-7.5 [--o:14px] [--sc:var(--color-pink)] md:grid-cols-[1fr_auto] ${v.card}`}
 >
   <div class="min-w-0">
     {eyebrow && <div class={`label tracking-[.14em] ${v.eyebrow}`}>{eyebrow}</div>}
