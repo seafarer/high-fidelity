@@ -1,7 +1,7 @@
 {
   "name": "high-fidelity",
   "private": true,
-  "description": "Colin O'Brien — senior web engineering, migrations, and fractional technical leadership",
+  "description": "Colin O'Brien \u2014 senior web engineering, migrations, and fractional technical leadership",
   "version": "0.1.0",
   "author": "Colin O'Brien",
   "type": "module",
@@ -9,9 +9,11 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "npm run build && wrangler dev",
     "astro": "astro",
-    "format": "prettier --write \"**/*.{astro,js,jsx,ts,tsx,json,md,mdx,css}\""
+    "format": "prettier --write \"**/*.{astro,js,jsx,ts,tsx,json,md,mdx,css}\"",
+    "deploy": "npm run build && wrangler deploy",
+    "check": "astro check && tsc -p worker"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "^0.4.0",
@@ -26,11 +28,13 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@cloudflare/workers-types": "^5.20261002.1",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.147.0"
   },
   "license": "0BSD",
   "repository": {

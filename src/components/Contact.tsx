@@ -14,55 +14,76 @@ const initialState: FormState = {
   formMessage: "",
 };
 
-function encode(data: Record<string, string>) {
-  return Object.keys(data)
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join("&");
-}
-
 const labelClass = "flex flex-col gap-2 font-mono text-[11px] font-bold tracking-[.14em] uppercase";
 
+type Status = { state: "idle" | "sending" | "sent" } | { state: "error"; message: string };
+
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>({ state: "idle" });
   const [formData, setFormData] = useState<FormState>(initialState);
+  const [company, setCompany] = useState("");
 
   function handleChange(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setStatus({ state: "sending" });
 
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({ "form-name": "High Fidelity Contact", ...formData }),
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error(`Form submission failed (${response.status})`);
-        setSubmitted(true);
-      })
-      .catch((error) => alert(error));
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.formName,
+          email: formData.formEmail,
+          phone: formData.formPhone,
+          message: formData.formMessage,
+          company,
+        }),
+      });
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(result.error ?? `Form submission failed (${response.status})`);
+      setStatus({ state: "sent" });
+      setFormData(initialState);
+    } catch (error) {
+      setStatus({
+        state: "error",
+        message: error instanceof Error ? error.message : "Something went wrong. Please email info@highfidelity.dev.",
+      });
+    }
   }
 
   return (
     <>
-      {submitted && (
-        <div className="mb-6 border-3 border-ink bg-sun p-4">
+      {status.state === "sent" && (
+        <div className="mb-6 border-3 border-ink bg-sun p-4" role="status">
           <p className="font-mono text-xs font-bold tracking-[.12em] uppercase">
             Got it. I'll be in touch soon!
           </p>
         </div>
       )}
-      <form
-        onSubmit={handleSubmit}
-        id="hfContact"
-        name="High Fidelity Contact"
-        className="flex flex-col gap-5"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-      >
+      {status.state === "error" && (
+        <div className="mb-6 border-3 border-ink bg-pink p-4" role="alert">
+          <p className="font-mono text-xs font-bold tracking-[.12em] uppercase">{status.message}</p>
+        </div>
+      )}
+      <form onSubmit={handleSubmit} id="hfContact" name="High Fidelity Contact" className="flex flex-col gap-5">
+        {/* Honeypot: hidden from people and assistive tech; bots that fill it are dropped server-side. */}
+        <div className="absolute -left-[9999px]" aria-hidden="true">
+          <label>
+            Company
+            <input
+              name="company"
+              value={company}
+              onChange={(event) => setCompany(event.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </label>
+        </div>
         <label className={labelClass}>
           Full name
           <input
@@ -118,9 +139,10 @@ export default function Contact() {
         <div className="mt-1.5">
           <button
             type="submit"
-            className="btn block-shadow press border-ink bg-pink text-ink [--o:7px] [--sc:var(--color-ink)] px-6 py-4"
+            disabled={status.state === "sending"}
+            className="btn block-shadow press border-ink bg-pink text-ink disabled:cursor-wait disabled:opacity-60 [--o:7px] [--sc:var(--color-ink)] px-6 py-4"
           >
-            Send it over →
+            {status.state === "sending" ? "Sending…" : "Send it over →"}
           </button>
         </div>
       </form>
