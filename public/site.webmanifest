@@ -3,13 +3,10 @@
   "short_name": "High Fidelity",
   "start_url": "/",
   "display": "minimal-ui",
-  "background_color": "#fbfbff",
-  "theme_color": "#534d9d",
+  "background_color": "#16131d",
+  "theme_color": "#16131d",
   "icons": [
-    {
-      "src": "/images/hf-logo-icon.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" }
   ]
 }

@@ -2,6 +2,8 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Gallery from "../../components/Gallery.astro";
+import { breadcrumbs, ids, ref } from "../../lib/site";
+import { shareImage } from "../../lib/share-image";
 
 export async function getStaticPaths() {
   const entries = await getCollection("work");
@@ -14,9 +16,30 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { title, summary, client, year, tags, metrics, images } = entry.data;
 const { Content } = await render(entry);
+
+const image = await shareImage(images);
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const jsonLd = [
+  {
+    "@type": "Article",
+    headline: title,
+    description: summary,
+    author: ref(ids.person),
+    publisher: ref(ids.business),
+    mainEntityOfPage: pageUrl,
+    keywords: tags.join(", "),
+    ...(client && { about: { "@type": "Organization", name: client } }),
+    ...(image && { image: new URL(image.url, Astro.site).href }),
+  },
+  breadcrumbs([
+    { name: "Home", path: "/" },
+    { name: "Work", path: "/work/" },
+    { name: title, path: Astro.url.pathname },
+  ]),
+];
 ---
 
-<BaseLayout title={title} description={summary}>
+<BaseLayout title={title} description={summary} image={image} type="article" jsonLd={jsonLd}>
   <article class="mx-auto max-w-3xl px-8 pt-24 pb-32.5">
     <a href="/work" class="label border-b-3 border-pink pb-1 tracking-[.14em]">&larr; All work</a>
     <h1 class="mt-10 font-display text-[clamp(44px,6vw,72px)] leading-[1.05] font-normal uppercase">{title}</h1>

@@ -1,19 +1,43 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { SITE, siteGraph } from "../lib/site";
 import "../styles/global.css";
 
 interface Props {
   title: string;
   description?: string;
+  /** Use as the full <title> instead of "{title} | High Fidelity". */
+  fullTitle?: string;
+  /** Social share image; defaults to the site-wide card. `url` may be root-relative. */
+  image?: { url: string; alt: string; width: number; height: number };
+  type?: "website" | "article";
+  publishedTime?: Date;
+  noindex?: boolean;
+  /** Page-specific JSON-LD nodes, added to the site-wide graph. */
+  jsonLd?: Record<string, unknown>[];
 }
 
-const defaultDescription = "Senior engineering, technical leadership, and product strategy for teams that need experienced hands without adding a full-time hire.";
+const {
+  title,
+  description = SITE.description,
+  fullTitle,
+  image = {
+    url: "/og-image.png",
+    alt: "High Fidelity: I build & modernize complex web platforms",
+    width: 1200,
+    height: 630,
+  },
+  type = "website",
+  publishedTime,
+  noindex = false,
+  jsonLd = [],
+} = Astro.props;
 
-const { title, description = defaultDescription } = Astro.props;
-const pageTitle = title === "High Fidelity" ? title : `${title} | High Fidelity`;
+const pageTitle = fullTitle ?? `${title} | ${SITE.name}`;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const ogImageUrl = new URL("/og-image.png", Astro.site);
+const imageUrl = new URL(image.url, Astro.site);
+const graph = { "@context": "https://schema.org", "@graph": [...siteGraph(), ...jsonLd] };
 ---
 
 <!doctype html>
@@ -21,7 +45,10 @@ const ogImageUrl = new URL("/og-image.png", Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="/images/hf-logo-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/images/icon-192.png" />
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
+    <meta name="theme-color" content="#16131d" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href={canonicalUrl} />
     <meta name="generator" content={Astro.generator} />
@@ -34,16 +61,27 @@ const ogImageUrl = new URL("/og-image.png", Astro.site);
 
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
 
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:locale" content={SITE.locale} />
+    <meta property="og:type" content={type} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:width" content={String(image.width)} />
+    <meta property="og:image:height" content={String(image.height)} />
+    <meta property="og:image:alt" content={image.alt} />
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={image.alt} />
+
+    <link rel="alternate" type="text/plain" title="llms.txt" href="/llms.txt" />
+    <script type="application/ld+json" set:html={JSON.stringify(graph)} />
 
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-2WT06GBEKM"></script>
     <script is:inline>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=JetBrains+Mono:wght@700&display=block"
+      rel="stylesheet"
+    />
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; }
+      body {
+        position: relative;
+        background: #16131d radial-gradient(#2e2839 1.4px, transparent 1.4px) 0 0 / 24px 24px;
+        color: #f3eee3;
+        font-family: "Anton", sans-serif;
+      }
+      .top {
+        position: absolute; top: 52px; left: 64px; right: 64px;
+        display: flex; align-items: center; justify-content: space-between;
+      }
+      .brand { display: flex; align-items: center; gap: 16px; }
+      .mark {
+        width: 48px; height: 48px; display: grid; place-items: center;
+        background: #ff3b8d; color: #16131d; border: 4px solid #f3eee3;
+        rotate: -6deg; box-shadow: 4px 4px 0 #5a3ff0; font-size: 21px;
+      }
+      .wordmark { font-size: 30px; letter-spacing: .02em; text-transform: uppercase; }
+      .url {
+        font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 18px;
+        letter-spacing: .14em; text-transform: uppercase; color: #ff3b8d;
+      }
+      h1 {
+        position: absolute; left: 64px; top: 140px;
+        font-weight: 400; font-size: 96px; line-height: 1.04; text-transform: uppercase;
+      }
+      .hl { display: inline-block; padding: 0 .14em; }
+      .pink { background: #ff3b8d; color: #16131d; rotate: -2.5deg; box-shadow: 8px 8px 0 #ffc933; margin: .05em 0; }
+      .violet { background: #5a3ff0; color: #f3eee3; rotate: 1.8deg; box-shadow: 8px 8px 0 #ff3b8d; margin-left: .3em; }
+      .sub {
+        position: absolute; left: 64px; top: 404px;
+        font-family: "JetBrains Mono", monospace; font-weight: 700; font-size: 21px;
+        letter-spacing: .12em; text-transform: uppercase; color: #cfc8d8; line-height: 1.6;
+      }
+      .sub b { color: #ff3b8d; font-weight: 700; }
+      .strip {
+        position: absolute; left: -2%; width: 104%; bottom: 34px;
+        rotate: -1.6deg; background: #ffc933; color: #16131d;
+        border-block: 4px solid #16131d; box-shadow: 0 8px 0 #ff3b8d;
+        padding: 12px 0; white-space: nowrap; font-size: 28px; text-transform: uppercase;
+        display: flex; gap: 26px; padding-left: 40px;
+      }
+      .strip i { font-style: normal; font-size: 22px; align-self: center; }
+      .strip i:nth-of-type(odd) { color: #ff3b8d; }
+      .strip i:nth-of-type(even) { color: #5a3ff0; }
+    </style>
+  </head>
+  <body>
+    <div class="top">
+      <div class="brand"><span class="mark">HF</span><span class="wordmark">High Fidelity</span></div>
+      <span class="url">highfidelity.dev</span>
+    </div>
+    <h1>
+      I build &amp;
+      <span class="hl pink">modernize</span><br />
+      complex web <span class="hl violet">platforms</span>
+    </h1>
+    <p class="sub"><b>Colin O'Brien</b> · Senior engineering,<br />technical leadership &amp; product strategy</p>
+    <div class="strip">
+      Platform migrations <i>✱</i> WordPress <i>✱</i> Next.js <i>✱</i> Astro <i>✱</i> TypeScript <i>✱</i>
+      Technical leadership <i>✱</i> Product <i>✱</i> Headless CMS <i>✱</i>
+    </div>
+  </body>
+</html>
