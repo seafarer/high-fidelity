@@ -1,24 +1,51 @@
 ---
 import type { ImageMetadata } from "astro";
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
+import { existsSync } from "node:fs";
 
 interface Props {
   images: { src: ImageMetadata; alt: string; caption?: string }[];
+  videos?: { src: string; title: string; caption?: string; poster?: ImageMetadata; vertical: boolean }[];
 }
 
-const { images } = Astro.props;
+const { images, videos = [] } = Astro.props;
+
+// Fail the build on a mistyped video path instead of shipping a broken player.
+for (const video of videos) {
+  if (!existsSync(`public${video.src}`)) throw new Error(`Gallery video not found: public${video.src}`);
+}
+
+const posters = await Promise.all(
+  videos.map((video) => (video.poster ? getImage({ src: video.poster, width: 900, format: "jpg" }) : undefined)),
+);
 
 // Frames alternate shadow color and tilt so a run of screenshots reads as pinned-up prints.
 const frames = ["-rotate-[.6deg] [--sc:var(--color-pink)]", "rotate-[.6deg] [--sc:var(--color-violet)]"];
+const frameClass = "block-shadow mb-10 break-inside-avoid border-3 border-ink bg-card p-3 [--o:8px]";
+const count = images.length + videos.length;
 ---
 
 {
-  images.length > 0 && (
-    <div class:list={["gap-8", images.length > 1 && "sm:columns-2"]}>
+  count > 0 && (
+    <div class:list={["gap-8", count > 1 && "sm:columns-2"]}>
+      {videos.map((video, i) => (
+        <figure class:list={[frameClass, frames[i % frames.length], video.vertical && "mx-auto max-w-96"]}>
+          <video
+            src={video.src}
+            poster={posters[i]?.src}
+            controls
+            playsinline
+            preload="metadata"
+            aria-label={video.title}
+            class="block h-auto w-full border-2 border-ink bg-ink"
+          />
+          {video.caption && (
+            <figcaption class="mt-3 font-mono text-xs leading-relaxed text-ink-600">{video.caption}</figcaption>
+          )}
+        </figure>
+      ))}
       {images.map((image, i) => (
-        <figure
-          class={`block-shadow mb-10 break-inside-avoid border-3 border-ink bg-card p-3 [--o:8px] ${frames[i % frames.length]}`}
-        >
+        <figure class={`${frameClass} ${frames[(i + videos.length) % frames.length]}`}>
           <a href={image.src.src} target="_blank" rel="noreferrer" class="block" aria-label={`Open full-size image: ${image.alt}`}>
             <Image
               src={image.src}

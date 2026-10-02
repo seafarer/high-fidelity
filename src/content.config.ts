@@ -8,6 +8,21 @@ const gallery = (image: SchemaContext["image"]) =>
     .array(z.object({ src: image(), alt: z.string(), caption: z.string().optional() }))
     .default([]);
 
+// Videos live in public/media/ (Astro doesn't process video) and render in the same gallery.
+// `vertical` caps portrait clips like Shorts at phone width.
+const videos = (image: SchemaContext["image"]) =>
+  z
+    .array(
+      z.object({
+        src: z.string().regex(/^\/media\/.+\.(mp4|webm)$/, "Video paths look like /media/<post>/<file>.mp4"),
+        title: z.string(),
+        caption: z.string().optional(),
+        poster: image().optional(),
+        vertical: z.boolean().default(false),
+      }),
+    )
+    .default([]);
+
 const work = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/work" }),
   schema: ({ image }) => z.object({
@@ -27,6 +42,7 @@ const work = defineCollection({
     stat: z.string().optional(),
     statLabel: z.string().optional(),
     images: gallery(image),
+    videos: videos(image),
   }),
 });
 
@@ -42,6 +58,7 @@ const lab = defineCollection({
     githubUrl: z.string().url().optional(),
     featured: z.boolean().default(false),
     images: gallery(image),
+    videos: videos(image),
   }),
 });
 
