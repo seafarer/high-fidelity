@@ -20,7 +20,7 @@ statLabel: "Booking business"
 A Vacation rental company was running its business on a site that couldn't keep up. Booking was the core of the business, but the existing experience made it harder than it needed to be for guests to find, evaluate, and reserve a property. The new platform needed a modern Next.js front end that pulled content from Drupal and live property and availability data from Salesforce. Additionally, they wanted a design and theme system that could be applied to future booking sites they may develop or acquire in the future. 
 
 **The fix**
-My Parnter and I at Wild Roar owned the full UX/UI for this unique project. We interviewed their team to understand how guests actually book and where the business was losing them, audited the existing site for UX and conversion problems, and mapped the user journeys the new site needed to support. That research shaped the design we delivered.
+My partner at Wild Roar and I owned the full UX/UI for this unique project. We interviewed their team to understand how guests actually book and where the business was losing them, audited the existing site for UX and conversion problems, and mapped the user journeys the new site needed to support. That research shaped the design we delivered.
 
 When the project moved into development, I joined the build, embedding with their internal team. I developed the homepage, blog, and informational pages, built a custom page builder in Drupal so their team could assemble pages without developer help. I also contributed components to the core booking experience: the search interface, property search cards, and rental detail pages, including a modern lightbox experience.
 

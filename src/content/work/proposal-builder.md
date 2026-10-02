@@ -4,7 +4,7 @@ summary: "Taking a client's Lovable-built proposal tool the last 20%: audit, dat
 client: "Adventure Outdoors"
 year: "2026"
 tags: ["React", "TypeScript", "Supabase", "Vercel", "Resend", "Lovable"]
-metrics: ["~4,700 lines of generated code removed", "1 system replacing scattered Word files"]
+metrics: ["~4,700 lines of generated code removed", "A single source of truth"]
 featured: true
 order: 1
 category: "Prototype to production"
@@ -37,7 +37,7 @@ I took the exported code and audited it first. About half of it was dead weight:
 
 Then I built what the prototype was missing. Supabase provides the database, staff logins, and row-level security, so the sales team can manage every proposal while customers can only view the one they were sent. Proposals move through a real workflow: drafted, reviewed internally, sent to the customer as a draft, finalized, and confirmed by the customer, with email notifications through Resend when they accept. I finished the design and layout to the client's specifications, including clean print and PDF output.
 
-It's hosted on Vercel, and I maintain it.
+It's now hosted on Vercel where I can maintain and oversee it.
 
 **The result**
 Every proposal now lives in one system. The whole sales team works from the same activities, pricing, and options, with enough flexibility to tailor each quote to the group, and there's no longer Word files across multiple folders and computers that need to be kept track of.
