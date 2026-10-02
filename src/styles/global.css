@@ -163,6 +163,22 @@
     font-size: 1.5rem;
   }
 
+  /* Quoted prompts and passages: a mono card, like a pasted terminal snippet. */
+  .prose-hf blockquote {
+    border: 3px solid var(--color-ink);
+    background: var(--color-card);
+    padding: 1.1em 1.3em;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    box-shadow: 6px 6px 0 var(--color-violet);
+  }
+
+  .prose-hf blockquote > * + * {
+    margin-top: 0.8em;
+  }
+
   /* Tailwind's preflight strips list markers; restore them with square pink bullets. */
   .prose-hf ul,
   .prose-hf ol {
