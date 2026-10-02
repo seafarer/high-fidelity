@@ -13,7 +13,7 @@
   },
   "vars": {
     "CONTACT_TO": "info@highfidelity.dev",
-    "CONTACT_FROM": "High Fidelity <contact@highfidelity.dev>"
+    "CONTACT_FROM": "High Fidelity <contact@mail.highfidelity.dev>"
   },
   // RESEND_API_KEY is a secret: `npx wrangler secret put RESEND_API_KEY`, or .dev.vars locally.
   "observability": { "enabled": true }
