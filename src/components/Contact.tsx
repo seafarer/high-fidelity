@@ -133,7 +133,7 @@ export default function Contact() {
             rows={5}
             required
             className="field resize-y"
-            placeholder="What are you building, migrating, or untangling?"
+            placeholder="What do you want to create?"
           />
         </label>
         <div className="mt-1.5">

@@ -20,8 +20,7 @@ const entries = (await getCollection("lab"))
       <a href="/lab" class="label border-b-3 border-pink pb-1 tracking-[.14em]">See all →</a>
     </div>
     <p class="mt-6 mb-14 max-w-130 text-[17px] leading-relaxed text-pretty text-ink-700">
-      Small tools, prototypes, experiments, and technical notes. I use downtime to build things, explore new
-      approaches, and test ideas before they show up in client work.
+      Side projects, prototypes, micro tools and notes.
     </p>
     <div class="grid items-stretch gap-9 md:grid-cols-2">
       {entries.map((entry, i) => <LabCard entry={entry} index={i} />)}

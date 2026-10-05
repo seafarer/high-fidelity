@@ -1,6 +1,6 @@
 ---
-title: "From vibe-coded prototype to production"
-summary: "Taking a client's Lovable-built proposal tool the last 20%: audit, database, auth, workflow, and hosting"
+title: "Vibe-coded client prototype to production tool"
+summary: "A client brought me a prototype built in Lovable. I took it the last 20% via code audit, database, auth, workflow, and hosting"
 client: "Adventure Outdoors"
 year: "2026"
 tags: ["React", "TypeScript", "Supabase", "Vercel", "Resend", "Lovable"]
