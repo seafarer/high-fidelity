@@ -15,7 +15,7 @@ export const GET: APIRoute = async () => {
     "",
     `${SITE.name} is the independent practice of ${PERSON.name}, a ${PERSON.jobTitle.toLowerCase()} based in Colorado with more than 20 years across development, product, UX, publishing, and digital strategy. He works directly with companies and partners with agencies that need senior engineering capacity.`,
     "",
-    `Contact: ${SITE.email}, ${SITE.telephone}. Booking new projects.`,
+    `Contact: ${SITE.email}, ${SITE.telephone}.`,
     "",
     "## Services",
     "",
