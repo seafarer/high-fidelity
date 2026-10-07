@@ -1,0 +1,497 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Marquee from "../components/Marquee.astro";
+import Contact from "../components/Contact";
+import { breadcrumbs, ids, ref } from "../lib/site";
+
+const title = "Prototype to production";
+const description =
+  "You built something in Lovable, Bolt, v0, Replit, or Cursor. I review it, keep what works, and take it to production with real auth, data, security, and hosting.";
+
+const tools = ["Lovable", "Bolt", "v0", "Replit", "Cursor", "Claude Code", "Codex", "React", "Next.js", "Supabase"];
+
+// Illustrative assessment output for the hero card, not a real client's findings.
+const findings = [
+  { area: "UI & flow", verdict: "Keep", class: "bg-sun" },
+  { area: "Business logic", verdict: "Refactor", class: "bg-lilac" },
+  { area: "Auth & permissions", verdict: "Fix", class: "bg-pink" },
+  { area: "Secrets & API keys", verdict: "Fix", class: "bg-pink" },
+  { area: "Hosting & cost", verdict: "Plan", class: "bg-card" },
+];
+
+const symptoms = [
+  "It works in the demo, but you're not sure how to get it live on your own website",
+  "Someone mentioned API keys, GitHub, or a database, and you nodded along",
+  "Every new prompt fixes one thing and breaks another",
+  "Customers will sign in, but you're not sure what they can see once they do",
+  "You don't know where your customers' information is stored or who can get to it",
+  "You have no idea what this will cost each month once people start using it",
+  "If it broke tomorrow, you wouldn't know who to call",
+];
+
+const steps = [
+  {
+    name: "Assessment",
+    price: "$1,500",
+    body: "I go through your app and its code and give you a written report of what's solid, what's risky, what needs to change before launch, along with a fixed quote to get it live. If we keep going, the fee is credited toward the build.",
+    card: "bg-card md:mt-8 [--sc:var(--color-pink)]",
+    tag: "-rotate-3 bg-sun",
+  },
+  {
+    name: "Build",
+    price: "From $5,000",
+    body: "I take it to production. Auth, database, security, deployment, testing, and cleanup, all at a fixed price agreed up front.",
+    card: "bg-sun [--sc:var(--color-pink)]",
+    tag: "rotate-2 bg-pink",
+  },
+  {
+    name: "Care plan",
+    price: "From [$150]/mo",
+    body: "Hosting, monitoring, updates, and a block of support time each month, ensuring it keeps working after launch.",
+    card: "bg-pink md:mt-12 [--sc:var(--color-violet)]",
+    tag: "-rotate-2 bg-violet text-paper",
+  },
+];
+
+const coverage = [
+  {
+    area: "Auth and permissions",
+    body: "Who can sign in, who can see what, and whether that holds up",
+  },
+  {
+    area: "Data",
+    body: "How it's structured, how it's protected, and whether it'll scale with you",
+  },
+  {
+    area: "Security",
+    body: "Secrets, exposed endpoints, and the usual AI-generated gaps",
+  },
+  {
+    area: "Code quality",
+    body: "Duplicated logic, dead code, and what's safe to keep building on",
+  },
+  { area: "Performance", body: "What slows down as usage grows" },
+  {
+    area: "Hosting and cost",
+    body: "Where it should live and what that will actually cost",
+  },
+  {
+    area: "Path forward",
+    body: "Whether to harden what you have or rebuild specific parts",
+  },
+];
+
+const faqs = [
+  {
+    q: "Which tools do you work with?",
+    a: "Lovable, Bolt, v0, Replit, Cursor, Claude Code, Codex, and hand-built React or Next.js apps. If it runs on a modern JavaScript stack, I can work with it. Python and PHP are also in the mix.",
+  },
+  {
+    q: "Will you rewrite everything?",
+    a: "Only if the assessment says it's the cheaper path. Usually it isn't.",
+  },
+  {
+    q: "Can I keep building in Lovable (or my tool) afterward?",
+    a: "It depends. We'll agree on a workflow so new changes don't undo production fixes.",
+  },
+  {
+    q: "Who owns the code?",
+    a: "You do. We'll ensure that the setup we choose protects your intellectual property.",
+  },
+  {
+    q: "How long does it take?",
+    a: "The assessment takes a few days. Most builds take two to four weeks, depending on what the assessment finds.",
+  },
+];
+
+const caseStudy = await getEntry("work", "proposal-builder");
+
+const jsonLd = [
+  {
+    "@type": "Service",
+    name: title,
+    description,
+    provider: ref(ids.business),
+    areaServed: { "@type": "Country", name: "United States" },
+    offers: {
+      "@type": "Offer",
+      name: "Assessment",
+      price: "1500",
+      priceCurrency: "USD",
+    },
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: { "@type": "Answer", text: faq.a },
+    })),
+  },
+  breadcrumbs([
+    { name: "Home", path: "/" },
+    { name: title, path: Astro.url.pathname },
+  ]),
+];
+---
+
+<BaseLayout title={title} description={description} jsonLd={jsonLd}>
+  <!-- Hero -->
+  <section class="dots-dark bg-ink pt-14 pb-35 text-paper xl:pt-22">
+    <div
+      class="mx-auto grid max-w-360 items-center gap-x-[clamp(64px,6vw,96px)] gap-y-16 px-6 sm:px-10 xl:grid-cols-[1fr_440px]"
+    >
+      <div class="@container min-w-0">
+        <h1 class="font-display text-[clamp(52px,calc(100cqw/5.4),128px)] leading-[1.02] font-normal uppercase">
+          Your prototype
+          <span class="hl my-[.06em] rotate-[-2.5deg] bg-pink text-ink shadow-[7px_7px_0_var(--color-sun)]">works.</span
+          ><br />
+          Let's make it
+          <span class="hl my-[.06em] rotate-[1.8deg] bg-violet text-paper shadow-[7px_7px_0_var(--color-pink)]"
+            >real.</span
+          >
+        </h1>
+        <p class="mt-10 max-w-175 text-[clamp(18px,2vw,22px)] leading-normal text-pretty text-fog">
+          You built something in Lovable, Bolt, v0, Replit, or Cursor, and it does what you want in the demo. Getting it
+          ready for real users, real data, and real money is a different job. That's the job I do.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-5">
+          <a
+            href="#book"
+            class="btn block-shadow press bg-pink text-ink hover:text-ink [--o:8px] [--sc:var(--color-violet)]"
+          >
+            Book an assessment →
+          </a>
+          <a
+            href="#how"
+            class="btn block-shadow press bg-ink text-paper hover:text-paper [--o:8px] [--sc:var(--color-pink)]"
+          >
+            How it works
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="w-full max-w-110 justify-self-center border-3 border-ink bg-card p-6.5 text-ink shadow-[18px_18px_0_var(--color-pink)] outline-3 outline-paper xl:rotate-1"
+        role="figure"
+        aria-label="Example assessment findings"
+      >
+        <div class="label mb-5 flex items-center justify-between text-[11px]">
+          <span>Assessment · sample</span><span class="tracking-normal text-violet" aria-hidden="true">▚▚ ▚▚▚</span>
+        </div>
+        <ul class="flex flex-col gap-2.5">
+          {
+            findings.map((item) => (
+              <li class="flex items-center justify-between gap-4 border-3 border-ink bg-paper px-4 py-3 shadow-[4px_4px_0_var(--color-ink)]">
+                <span class="text-[17px] font-semibold">{item.area}</span>
+                <span class={`label border-2 border-ink px-2 py-1 text-[10px] ${item.class}`}>{item.verdict}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <div
+          class="label mt-5.5 flex justify-between border-t-2 border-dashed border-ink pt-3.5 text-[10.5px] tracking-widest"
+        >
+          <span>Fixed quote to launch</span><span class="text-pink-deep">Included</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Marquee items={tools} />
+
+  <!-- Sound familiar? -->
+  <section class="dots-light pt-30 pb-30">
+    <div class="mx-auto max-w-page px-8">
+      <h2 class="mb-14 font-display text-[clamp(44px,6vw,72px)] leading-none font-normal uppercase">
+        Sound <span class="hl -rotate-2 border-3 border-ink bg-sun shadow-[6px_6px_0_var(--color-pink)]">familiar?</span
+        >
+      </h2>
+      <!-- The list shares a grid with the follow-up, so the follow-up fills the slot beside the last item. -->
+      <div id="symptoms" class="group/symptoms grid gap-5 md:grid-cols-2">
+        <ul class="contents">
+          {
+            symptoms.map((symptom) => (
+              <li>
+                <label class="group flex h-full cursor-pointer items-start gap-4 border-3 border-ink bg-card p-5 shadow-[6px_6px_0_var(--color-ink)] transition-colors has-checked:bg-sun">
+                  <input type="checkbox" class="peer sr-only" />
+                  <span
+                    class="mt-0.5 grid size-7 shrink-0 place-items-center border-3 border-ink bg-paper font-mono text-base leading-none font-bold text-transparent peer-checked:bg-pink peer-checked:text-ink peer-focus-visible:outline-3 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-violet"
+                    aria-hidden="true"
+                  >
+                    ✓
+                  </span>
+                  <span class="text-[17px] leading-snug text-pretty md:text-[19px]">{symptom}</span>
+                </label>
+              </li>
+            ))
+          }
+        </ul>
+        <!-- The hint and the message share one cell, so swapping them doesn't shift the page. -->
+        <div class="mt-4 grid items-center md:mt-0 md:px-2" aria-live="polite">
+          <p
+            class="label col-start-1 row-start-1 text-[11px] tracking-[.14em] text-ink-500 group-data-struggle/symptoms:invisible"
+          >
+            Check any that apply
+          </p>
+          <p
+            class="invisible col-start-1 row-start-1 flex flex-wrap items-center gap-x-6 gap-y-3 justify-self-start -rotate-1 border-3 border-ink bg-pink px-5 py-3.5 opacity-0 shadow-[6px_6px_0_var(--color-ink)] transition-opacity group-data-struggle/symptoms:visible group-data-struggle/symptoms:opacity-100"
+          >
+            <span class="text-[20px] font-semibold">The struggle is real. I can help.</span>
+            <a href="#book" class="label border-b-3 border-ink pb-1 text-[11px] tracking-[.14em] hover:text-ink">
+              Book an assessment →
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Keep what works -->
+  <section class="border-y-3 border-ink bg-pink pt-27.5 pb-30">
+    <div class="mx-auto grid max-w-page items-center gap-12 px-8 md:grid-cols-[6fr_5fr] md:gap-18">
+      <h2 class="font-display text-[clamp(48px,7vw,96px)] leading-[.98] font-normal uppercase">
+        Keep what
+        <span class="hl rotate-[-2deg] border-3 border-ink bg-sun shadow-[6px_6px_0_var(--color-lilac)]">works</span> fix
+        what
+        <span
+          class="hl ml-[.15em] rotate-[1.5deg] border-3 border-ink bg-ink text-paper shadow-[6px_6px_0_var(--color-violet)]"
+          >doesn't</span
+        >
+      </h2>
+      <p class="text-[19px] leading-[1.6] text-pretty text-ink md:text-[21px]">
+        AI-built prototypes are great at quickly getting your idea, the flow, and a lot of the interface right.
+        Where they can struggle is with the plumbing underneath. I don't start over by default. I review what you have, keep what's solid, and
+        replace what isn't, so you get to launch without paying for a rebuild you don't need.
+      </p>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section id="how" class="bg-ink pt-27.5 pb-32.5 text-paper">
+    <div class="mx-auto max-w-page px-8">
+      <h2 class="mb-18 font-display text-[clamp(44px,6vw,72px)] leading-none font-normal uppercase">
+        How it <span class="hl rotate-[2deg] border-3 border-paper bg-violet shadow-[6px_6px_0_var(--color-pink)]"
+          >works</span
+        >
+      </h2>
+      <ol class="grid items-start gap-14 md:grid-cols-3 md:gap-7">
+        {
+          steps.map((step, i) => (
+            <li
+              class={`relative border-3 border-paper p-7.5 pt-10 text-ink shadow-[12px_12px_0_var(--sc)] ${step.card}`}
+            >
+              <span
+                class={`absolute -top-6 left-6 border-3 border-ink px-3 py-1.5 font-mono text-[13px] font-bold tracking-[.08em] uppercase shadow-[4px_4px_0_var(--color-ink)] ${step.tag}`}
+              >
+                {step.price}
+              </span>
+              <div class="flex items-baseline gap-3">
+                <span class="font-display text-[64px] leading-none text-violet [text-shadow:3px_3px_0_var(--color-ink)]">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 class="font-display text-[34px] leading-none font-normal uppercase">{step.name}</h3>
+              </div>
+              <p class="mt-5 text-base leading-relaxed text-pretty text-ink-800">{step.body}</p>
+              {i < steps.length - 1 && (
+                <span
+                  class="absolute top-1/2 -right-8 z-1 hidden size-10 -translate-y-1/2 place-items-center border-3 border-ink bg-paper font-mono text-lg font-bold md:grid"
+                  aria-hidden="true"
+                >
+                  →
+                </span>
+              )}
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- What the assessment covers -->
+  <section class="dots-sand border-b-3 border-ink bg-sand pt-27.5 pb-32.5">
+    <div class="mx-auto grid max-w-page items-start gap-14 px-8 lg:grid-cols-[4fr_7fr]">
+      <div class="lg:sticky lg:top-10">
+        <h2 class="font-display text-[clamp(44px,6vw,72px)] leading-none font-normal uppercase">
+          What the assessment
+          <span class="hl mt-2 -rotate-2 border-3 border-ink bg-pink shadow-[6px_6px_0_var(--color-violet)]"
+            >covers</span
+          >
+        </h2>
+        <p class="mt-8 max-w-100 text-[17px] leading-relaxed text-pretty text-ink-700">
+          A written report and a fixed quote. The fee is credited toward the build if we keep going.
+        </p>
+      </div>
+      <div class="border-3 border-ink bg-card shadow-[14px_14px_0_var(--color-ink)]">
+        <div class="label flex justify-between border-b-3 border-ink bg-ink px-6 py-3.5 text-[11px] text-paper">
+          <span>Scope</span>
+        </div>
+        <dl>
+          {
+            coverage.map((item, i) => (
+              <div class="grid gap-1.5 border-b-2 border-ink px-6 py-5 last:border-b-0 sm:grid-cols-[220px_1fr] sm:gap-6">
+                <dt class="flex items-baseline gap-3 font-display text-[22px] leading-tight uppercase">
+                  <span class="font-mono text-xs font-bold text-pink-deep">{String(i + 1).padStart(2, "0")}</span>
+                  {item.area}
+                </dt>
+                <dd class="text-base leading-relaxed text-pretty text-ink-700">{item.body}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent work -->
+  {
+    caseStudy && (
+      <section class="border-b-3 border-ink bg-violet pt-27.5 pb-32.5 text-paper">
+        <div class="mx-auto max-w-page px-8">
+          <h2 class="mb-14 font-display text-[clamp(44px,6vw,72px)] leading-none font-normal uppercase">
+            Recent{" "}
+            <span class="hl -rotate-2 border-3 border-ink bg-sun text-ink shadow-[6px_6px_0_var(--color-pink)]">
+              work
+            </span>
+          </h2>
+          <a
+            href={`/work/${caseStudy.id}`}
+            class="block-shadow lift grid border-3 border-ink bg-card text-ink hover:text-ink [--o:16px] [--sc:var(--color-ink)] md:grid-cols-[1fr_auto]"
+          >
+            <div class="p-8.5">
+              <h3 class="font-display text-[clamp(36px,4.4vw,56px)] leading-none font-normal uppercase">
+                {caseStudy.data.cardTitle ?? caseStudy.data.title}
+              </h3>
+              <p class="mt-5 max-w-150 text-[17px] leading-relaxed text-pretty text-ink-700">
+                A client came to me with a Lovable prototype that was close on design and function. I reviewed the
+                build, crafted a long-term approach, and took it to production with real auth, a database,
+                and a review-and-confirm workflow.
+              </p>
+              <p class="label mt-6 text-[11px] tracking-[.12em] text-ink-500">{caseStudy.data.tags.join(" · ")}</p>
+              <span class="label mt-7 inline-block border-b-3 border-pink pb-1 tracking-[.14em]">
+                Read the case study →
+              </span>
+            </div>
+            {caseStudy.data.stat && (
+              <div class="flex flex-col justify-center border-t-3 border-ink bg-sun px-10 py-8 md:border-t-0 md:border-l-3">
+                <div class="font-display text-[clamp(72px,9vw,120px)] leading-[.9] text-pink-deep [text-shadow:4px_4px_0_var(--color-ink)]">
+                  {caseStudy.data.stat}
+                </div>
+                {caseStudy.data.statLabel && (
+                  <div class="label mt-3 text-[11px] tracking-[.12em]">{caseStudy.data.statLabel}</div>
+                )}
+              </div>
+            )}
+          </a>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Is this a fit? -->
+  <section class="pt-27.5 pb-30">
+    <div class="mx-auto max-w-page px-8">
+      <h2 class="mb-14 font-display text-[clamp(44px,6vw,72px)] leading-none font-normal uppercase">
+        Is this a <span
+          class="hl rotate-2 border-3 border-ink bg-violet text-paper shadow-[6px_6px_0_var(--color-pink)]">fit?</span
+        >
+      </h2>
+      <div class="grid items-start gap-10 md:grid-cols-[7fr_5fr] md:gap-8">
+        <div class="relative border-3 border-ink bg-sun p-8.5 shadow-[12px_12px_0_var(--color-ink)]">
+          <span
+            class="absolute -top-5 -right-3 grid size-12 rotate-6 place-items-center border-3 border-ink bg-pink font-mono text-2xl font-bold shadow-[4px_4px_0_var(--color-ink)]"
+            aria-hidden="true">✓</span
+          >
+          <h3 class="font-display text-[36px] leading-none font-normal uppercase">Good fit</h3>
+          <p class="mt-4 text-[18px] leading-relaxed text-pretty text-ink-800">
+            Founders, small businesses, and internal teams with a working prototype they want to put in front of customers or
+            staff.
+          </p>
+        </div>
+        <div class="relative border-3 border-dashed border-ink bg-card p-8.5 md:mt-12">
+          <span
+            class="absolute -top-5 -right-3 grid size-12 -rotate-6 place-items-center border-3 border-ink bg-paper font-mono text-2xl font-bold"
+            aria-hidden="true">✕</span
+          >
+          <h3 class="font-display text-[36px] leading-none font-normal uppercase">Probably not yet</h3>
+          <p class="mt-4 text-[17px] leading-relaxed text-pretty text-ink-700">
+            If what you have is a mockup or an idea that isn't built yet, let's start with a <a
+              href="/#contact"
+              class="border-b-3 border-pink">conversation</a
+            > and see if there is another way we can work together.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Questions -->
+  <section class="dots-light border-t-3 border-ink pt-27.5 pb-32.5">
+    <div class="mx-auto grid max-w-page items-start gap-14 px-8 lg:grid-cols-[4fr_7fr]">
+      <h2 class="font-display text-[clamp(44px,6vw,72px)] leading-none font-normal uppercase">
+        <span class="hl -rotate-2 border-3 border-ink bg-pink shadow-[6px_6px_0_var(--color-ink)]">Questions</span>
+      </h2>
+      <div class="flex flex-col gap-4">
+        {
+          faqs.map((faq, i) => (
+            <details
+              class="group border-3 border-ink bg-card shadow-[6px_6px_0_var(--color-ink)] open:shadow-[6px_6px_0_var(--color-violet)]"
+              open={i === 0}
+            >
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-6 px-6 py-5 text-[19px] font-semibold [&::-webkit-details-marker]:hidden">
+                {faq.q}
+                <span
+                  class="grid size-8 shrink-0 place-items-center border-3 border-ink bg-sun font-mono text-lg leading-none font-bold transition-transform group-open:rotate-45 group-open:bg-pink"
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </summary>
+              <p class="border-t-2 border-dashed border-ink px-6 py-5 text-[17px] leading-relaxed text-pretty text-ink-700">
+                {faq.a}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="book" class="bg-ink pt-30 pb-25 text-paper">
+    <div class="mx-auto grid max-w-page items-start gap-18 px-8 md:grid-cols-2">
+      <div>
+        <h2 class="mb-7 font-display text-[clamp(56px,7.4vw,104px)] leading-[1.02] font-normal uppercase">
+          Close isn't<br /><span class="hl rotate-[-2.5deg] bg-pink text-ink shadow-[7px_7px_0_var(--color-sun)]"
+            >launched.</span
+          >
+        </h2>
+        <p class="mb-9 max-w-110 text-[19px] leading-relaxed text-pretty text-fog">
+          Send me a link to your prototype and a few lines about what it does. I'll let you know whether an assessment makes
+          sense.
+        </p>
+        <a
+          href="mailto:info@highfidelity.dev"
+          class="inline-block rotate-[-1.5deg] border-3 border-ink bg-card px-4.5 py-3 font-mono text-sm font-bold text-ink shadow-[8px_8px_0_var(--color-violet)] outline-3 outline-paper hover:text-ink"
+        >
+          info@highfidelity.dev
+        </a>
+      </div>
+      <div
+        class="border-3 border-ink bg-card p-8 text-ink shadow-[18px_18px_0_var(--color-pink)] outline-3 outline-paper md:mt-10"
+      >
+        <Contact client:load messagePlaceholder="A link to your prototype and a few lines about what it does" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Show the follow-up once two or more symptoms are checked.
+  const symptoms = document.getElementById("symptoms")!;
+  symptoms.addEventListener("change", () => {
+    const checked = symptoms.querySelectorAll("input:checked").length;
+    symptoms.toggleAttribute("data-struggle", checked >= 2);
+  });
+</script>

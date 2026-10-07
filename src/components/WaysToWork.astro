@@ -1,0 +1,72 @@
+---
+const tiers = [
+  {
+    name: "Assessment",
+    terms: "Fixed fee · 1 to 2 weeks",
+    body: "A concise review of a prototype, site, or project off the rails. You get a written report covering what's working, risks, and a recommended plan with rough cost. If we continue, the fee is credited toward the build.",
+    price: "$1,500",
+    card: "bg-card md:-rotate-1 [--sc:var(--color-pink)]",
+    priceColor: "text-violet",
+  },
+  {
+    name: "Sprint",
+    terms: "Fixed scope and price · 2 to 4 weeks",
+    body: "A focused block of work with one clear deliverable, such as getting a prototype ready for launch, building a feature, adding an integration, or fixing performance. Bigger projects, like a migration or a rebuild, run as a series of sprints, each scoped and priced before it starts.",
+    price: "$5,000",
+    card: "bg-sun md:mt-10 [--sc:var(--color-ink)]",
+    priceColor: "text-pink-deep",
+  },
+  {
+    name: "Fractional",
+    terms: "Monthly retainer",
+    body: "Ongoing senior capacity for teams and agencies. Reserved hours each month for engineering, technical leadership, or both.",
+    price: "$5,000",
+    per: "/mo",
+    card: "bg-pink md:mt-4 md:rotate-1 [--sc:var(--color-ink)]",
+    priceColor: "text-ink",
+  },
+];
+---
+
+<section id="ways-to-work" class="border-b-3 border-ink bg-violet pt-27.5 pb-32.5 text-paper">
+  <div class="mx-auto max-w-page px-8">
+    <h2 class="mb-16 font-display text-[clamp(44px,6vw,72px)] leading-none font-normal uppercase">
+      Ways to <span class="hl -rotate-2 border-3 border-ink bg-sun text-ink shadow-[6px_6px_0_var(--color-pink)]">work</span>
+    </h2>
+
+    <div class="grid items-start gap-10 md:grid-cols-3 md:gap-7">
+      {
+        tiers.map((tier) => (
+          <div class={`block-shadow flex h-full flex-col border-3 border-ink text-ink [--o:12px] ${tier.card}`}>
+            <div class="flex-1 p-7.5">
+              <h3 class="font-display text-[40px] leading-none font-normal uppercase">{tier.name}</h3>
+              <div class="label mt-3 text-[11px] tracking-[.14em]">{tier.terms}</div>
+              <p class="mt-5 text-base leading-relaxed text-pretty text-ink-800">{tier.body}</p>
+            </div>
+            <!-- Price sits below a perforated rule, like a ticket stub. -->
+            <div class="flex items-baseline gap-2 border-t-3 border-dashed border-ink px-7.5 pt-5 pb-6">
+              <span class="label text-[11px] tracking-[.14em]">From</span>
+              <span class={`font-display text-[52px] leading-none ${tier.priceColor}`}>{tier.price}</span>
+              {tier.per && <span class="font-display text-2xl">{tier.per}</span>}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <a
+      href="/prototype"
+      class="block-shadow lift mt-20 flex flex-wrap items-center justify-between gap-x-10 gap-y-5 border-3 border-ink bg-ink px-8.5 py-7.5 text-paper hover:text-paper [--o:12px] [--sc:var(--color-sun)] md:-rotate-[0.6deg]"
+    >
+      <div class="max-w-160">
+        <div class="font-display text-[clamp(30px,3.6vw,44px)] leading-[1.05] uppercase">
+          Built something in Lovable, Bolt, or Cursor?
+        </div>
+        <p class="mt-2.5 text-[17px] leading-relaxed text-pretty text-fog">
+          See how I take AI-built prototypes to production, starting with an assessment.
+        </p>
+      </div>
+      <span class="btn block-shadow bg-pink text-ink [--o:6px] [--sc:var(--color-paper)]">Prototype to production →</span>
+    </a>
+  </div>
+</section>

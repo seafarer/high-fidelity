@@ -18,7 +18,12 @@ const labelClass = "flex flex-col gap-2 font-mono text-[11px] font-bold tracking
 
 type Status = { state: "idle" | "sending" | "sent" } | { state: "error"; message: string };
 
-export default function Contact() {
+interface Props {
+  /** Prompt for the message field. */
+  messagePlaceholder?: string;
+}
+
+export default function Contact({ messagePlaceholder = "What do you want to create?" }: Props) {
   const [status, setStatus] = useState<Status>({ state: "idle" });
   const [formData, setFormData] = useState<FormState>(initialState);
   const [company, setCompany] = useState("");
@@ -133,7 +138,7 @@ export default function Contact() {
             rows={5}
             required
             className="field resize-y"
-            placeholder="What do you want to create?"
+            placeholder={messagePlaceholder}
           />
         </label>
         <div className="mt-1.5">

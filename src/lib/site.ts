@@ -31,9 +31,9 @@ export const PERSON = {
 
 export const SERVICES = [
   "Platform modernization & migrations",
+  "Prototype to production",
   "Senior engineering",
-  "Fractional technical leadership",
-  "Product & experience design",
+  "Fractional technical & product leadership",
 ];
 
 const PERSON_ID = `${SITE.url}/#colin`;

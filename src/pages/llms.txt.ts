@@ -34,6 +34,7 @@ export const GET: APIRoute = async () => {
     "## Links",
     "",
     `- [Home](${link("/")})`,
+    `- [Prototype to production](${link("/prototype/")}): taking AI-built prototypes (Lovable, Bolt, v0, Replit, Cursor) to production, starting with a fixed-fee assessment`,
     `- [About](${link("/#about")})`,
     `- [Contact](${link("/#contact")})`,
     ...PERSON.sameAs.map((url) => `- [${new URL(url).hostname.replace("www.", "")}](${url})`),
