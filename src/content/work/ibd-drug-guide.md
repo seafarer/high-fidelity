@@ -30,7 +30,7 @@ images:
 **At a glance**
 - Client: The American Gastroenterological Association (AGA), through agency partner [Thor Studio](https://www.thor-studio.com/)
 - Role: Front-end engineer and technical partner, from discovery through launch
-- Team: Thor's lead engineer and art director, plus a contract UX designer
+- Team: Thor's lead engineer and art director, plus UX design by 82 Local
 - Stack: Astro, React, TypeScript, Jotai, Tailwind
 - Live Site: [ibddrugguide.gastro.org](https://ibddrugguide.gastro.org/)
 
@@ -49,7 +49,7 @@ I built the two interactive pieces in React and TypeScript:
 Quiz answers and finder filters share state through Jotai, so the two tools stay in sync as people move between them. Thor's lead engineer wrote the recommendation algorithm and the loading logic behind it and owned deployment while I created the interface that reflected this data design.
 
 **Designing with real data**
-I worked closely with Thor's art director and a contract UX designer, and some of the design decisions only became clear once the interface was running on actual data.
+I worked closely with Thor's art director and the UX designer from 82 Local, and some of the design decisions only became clear once the interface was running on actual data.
 
 How the quiz worked had been debated for a long time. We looked at a lot of existing ideas and the design team mocked up several examples. I built an interactive functional prototype, after which I advocated for dropping auto-scroll and adding explicit previous and next buttons. From there we worked out together how to put every question on a single page, so users could scroll back, change an answer, and immediately see how their results changed. We wanted to let people explore their options rather than feel locked into a set of results. 
 
